@@ -175,6 +175,8 @@ if ( ! class_exists( 'Art_Store' ) ) {
 	     * @since 1.0.0
 	     */
 	    public function register_taxonomies() {
+
+	    	// Register "Type" taxonomy
 		    register_via_taxonomy_core(
 			    array(
 				    __( 'Type', 'art-store' ),  // Single
@@ -189,8 +191,8 @@ if ( ! class_exists( 'Art_Store' ) ) {
 				    'art-store-work'
 			    ) // post-types
 		    );
-	    } /* register_taxonomies() */
 
+		    // Register "Theme/Subject" taxonomy
 		    register_via_taxonomy_core(
 			    array(
 				    __( 'Theme/Subject', 'art-store' ),  // Single
@@ -205,6 +207,23 @@ if ( ! class_exists( 'Art_Store' ) ) {
 				    'art-store-work'
 			    ) // post-types
 		    );
+
+		    // Register the "Medium" taxonomy
+		    register_via_taxonomy_core(
+		    	array(
+		    		__( 'Medium', 'art-store' ), // Single
+		    		__( 'Media', 'art-store' ), // Plural
+		    		'art-store-medium'
+		    	),
+		    	array(
+		    		'hierarchical' => false,
+		    		'rewrite'      => array( 'slug' => 'medium' )
+		    	),
+		    	array(
+		    		'art-store-work'
+		    	)
+		    );
+
 	    } /* register_taxonomies() */
 
     }
