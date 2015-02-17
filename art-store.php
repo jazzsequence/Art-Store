@@ -189,16 +189,16 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		 */
 		public function register_taxonomies() {
 
-			// Register "Type" taxonomy
+			// Register "Form" taxonomy
 			register_via_taxonomy_core(
 				array(
-					__( 'Type', 'art-store' ),  // Single
-					__( 'Types', 'art-store' ), // Plural
-					'art-store-type'           // Registered slug
+					__( 'Form', 'art-store' ),  // Single
+					__( 'Forms', 'art-store' ), // Plural
+					'art-store-form'           // Registered slug
 				),
 				array(
 					'hierarchical' => true,
-					'rewrite'      => array( 'slug' => 'type' )
+					'rewrite'      => array( 'slug' => 'form' )
 				), // register_taxonomy args
 				array(
 					'art-store-work'
