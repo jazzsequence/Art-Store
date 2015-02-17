@@ -104,8 +104,9 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		 */
 		public function activate() {
 
-			// If BadgeOS is available, run our activation functions
 			if ( $this->meets_requirements() ) {
+				// flush rewrites on activation
+				flush_rewrite_rules();
 			}
 
 		} /* activate() */
@@ -116,6 +117,9 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		 * @since 1.0.0
 		 */
 		public function deactivate() {
+
+				// flush rewrites on deactivation
+				flush_rewrite_rules();
 
 		} /* deactivate() */
 
