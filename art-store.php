@@ -177,15 +177,32 @@ if ( ! class_exists( 'Art_Store' ) ) {
 	    public function register_taxonomies() {
 		    register_via_taxonomy_core(
 			    array(
-				    __( 'Sample Tag', 'art-store' ),  // Single
-				    __( 'Sample Tags', 'art-store' ), // Plural
-				    'art-store-sample-tags'           // Registered slug
+				    __( 'Type', 'art-store' ),  // Single
+				    __( 'Types', 'art-store' ), // Plural
+				    'art-store-type'           // Registered slug
 			    ),
 			    array(
-				    'hierarchical' => false
+				    'hierarchical' => true,
+				    'rewrite'      => array( 'slug' => 'type' )
 			    ), // register_taxonomy args
 			    array(
-				    'art-store-samples'
+				    'art-store-work'
+			    ) // post-types
+		    );
+	    } /* register_taxonomies() */
+
+		    register_via_taxonomy_core(
+			    array(
+				    __( 'Theme/Subject', 'art-store' ),  // Single
+				    __( 'Themes/Subjects', 'art-store' ), // Plural
+				    'art-store-subject'           // Registered slug
+			    ),
+			    array(
+				    'hierarchical' => false,
+				    'rewrite'      => array( 'slug' => 'subject' )
+			    ), // register_taxonomy args
+			    array(
+				    'art-store-work'
 			    ) // post-types
 		    );
 	    } /* register_taxonomies() */
