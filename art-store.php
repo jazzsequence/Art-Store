@@ -153,7 +153,7 @@ if ( ! class_exists( 'Art_Store' ) ) {
 			if ( ! $this->meets_requirements() ) {
 				// Display our error
 				echo '<div id="message" class="error">';
-				echo '<p>' . sprintf( __( 'Sample plugin is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', 'art-store' ), admin_url( 'plugins.php' ) ) . '</p>';
+				echo '<p>' . sprintf( __( 'Art Store is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', 'art-store' ), admin_url( 'plugins.php' ) ) . '</p>';
 				echo '</div>';
 
 				// Deactivate our plugin
