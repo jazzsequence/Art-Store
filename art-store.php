@@ -294,17 +294,32 @@ if ( ! class_exists( 'Art_Store' ) ) {
 						'desc'       => __( 'Item Price', 'art-store' )
 					),
 					'members_price' => array(
-						'name'       => __( 'Members Price', 'art-store' ),
+						'name'       => __( 'Member\'s Price', 'art-store' ),
 						'id'         => $this->prefix . 'members_price',
 						'type'       => 'text_money',
-						'desc'       => __( 'Members price (if different)', 'art-store' ),
+						'desc'       => __( 'Member\'s price (if different)', 'art-store' ),
 						'show_on_cb' => array( $this, 'is_members_enabled' )
+					),
+					'button_url' => array(
+						'name'       => __( 'Button URL', 'art-store' ),
+						'id'         => $this->prefix . 'button_url',
+						'type'       => 'text_url',
+						'desc'       => __( 'The URL to purchase', 'art-store' ),
+						'show_on_cb' => array( $this, 'are_product_urls_active' )
+					),
+					'members_button_url' => array(
+						'name'       => __( 'Members Button URL', 'art-store' ),
+						'id'         => $this->prefix . 'button_url',
+						'type'       => 'text_url',
+						'desc'       => __( 'The URL for members to purchase (if member\'s price is different)', 'art-store' ),
+						'show_on_cb' => array( $this, 'are_product_urls_active' )
 					),
 					'button_html' => array(
 						'name'       => __( 'PayPal Button HTML', 'art-store' ),
 						'id'         => $this->prefix . 'button_html',
 						'type'       => 'textarea_code',
 						'desc'       => __( 'Enter the PayPal button code for logged-out users and non-members.', 'art-store' ),
+						'show_on_cb' => array( $this, 'are_html_codes_active' ),
 						'attributes' => array( 'rows' => 5 )
 					),
 					'members_button_html' => array(
@@ -312,7 +327,7 @@ if ( ! class_exists( 'Art_Store' ) ) {
 						'id'         => $this->prefix . 'members_button_html',
 						'type'       => 'textarea_code',
 						'desc'       => __( 'Enter the PayPal button code for <strong>members and logged-in users</strong>. This should be a unique button with a different price than the one for logged-out users.', 'art-store' ),
-						'show_on_cb' => array( $this, 'is_members_enabled' ),
+						'show_on_cb' => array( $this, 'members_and_html' ),
 						'attributes' => array( 'rows' => 5 )
 					),
 					'shipping_info' => array(
