@@ -92,6 +92,7 @@ if ( ! class_exists( 'Art_Store' ) ) {
 			if( $this->meets_requirements() ) {
 				add_action( 'init', array( $this, 'register_post_types' ), 9 );
 				add_action( 'init', array( $this, 'register_taxonomies' ), 4 );
+				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			}
 
 		} /* do_hooks() */
@@ -238,6 +239,19 @@ if ( ! class_exists( 'Art_Store' ) ) {
 			);
 
 		} /* register_taxonomies() */
+
+		/**
+		 * Enqueue the javascript for the cool slider
+		 */
+		public function enqueue_scripts() {
+			// load our js if we aren't in the admin
+			// TODO: also check if an option for page is set for the scroll, https://github.com/jazzsequence/Art-Store/issues/3
+			if ( !is_admin() ) {
+				wp_enqueue_script( 'kinetic', $this->directory_url . '/assets/js/jquery.kinetic.js', array( 'jquery' ), '1.8.2', true );
+				wp_enqueue_script( 'mousewheel', $this->directory_url . '/assets/js/jquery.mousewheel.min.js', array( 'jquery' ), '3.1.4', true );
+				wp_enqueue_script( 'smoothdivscroll', $this->directory_url . '/assets/js/jquery.smoothdivscroll-1.3-min.js', array( 'jquery', 'kinetic', 'mousewheel' ), '1.3', true );
+			}
+		}
 
 	}
 
