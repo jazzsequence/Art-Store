@@ -17,217 +17,230 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Check if wp-content exists, only run code if it does not
 if ( ! class_exists( 'Art_Store' ) ) {
 
-    /**
-     * Main Art Store Class
-     *
-     * @since 1.0.0
-     */
-    class Art_Store {
+	/**
+	 * Main Art Store Class
+	 *
+	 * @since 1.0.0
+	 */
+	class Art_Store {
 
-        /**
-         * Construct function to get things started
-         *
-         * @since 1.0.0
-         */
-        public function __construct() {
+		/**
+		 * Construct function to get things started
+		 *
+		 * @since 1.0.0
+		 */
+		public function __construct() {
 
-	        /**
-	         * Setup some base variables for the plugin
-	         */
-	        $this->basename       = plugin_basename( __FILE__ );
-	        $this->directory_path = plugin_dir_path( __FILE__ );
-	        $this->directory_url  = plugins_url( dirname( $this->basename ) );
+			/**
+			 * Setup some base variables for the plugin
+			 */
+			$this->basename       = plugin_basename( __FILE__ );
+			$this->directory_path = plugin_dir_path( __FILE__ );
+			$this->directory_url  = plugins_url( dirname( $this->basename ) );
 
-	        /**
-	         * Include any required files
-	         */
-	        add_action( 'init', array( $this, 'includes' ) );
-
-	        /**
-	         * Load Textdomain
-	         */
-	        load_plugin_textdomain( 'art-store', false, dirname( $this->basename ) . '/languages' );
-
-	        /**
-	         * Activation/Deactivation Hooks
-	         */
-	        register_activation_hook(   __FILE__, array( $this, 'activate' ) );
-	        register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
-
-	        /**
-	         * Make sure we have our requirements, and disable the plugin if we do not have them.
-	         */
-	        add_action( 'admin_notices', array( $this, 'maybe_disable_plugin' ) );
-
-        }
-
-
-	    /**
-	     * Include our plugin dependencies
-	     *
-	     * @since 1.0.0
-	     */
-	    public function includes() {
-
+			/**
+			 * Load external libraries
+			 */
 	    	require_once( $this->directory_path . '/inc/cpt_core/CPT_Core.php' );
 	    	require_once( $this->directory_path . '/inc/taxonomy_core/Taxonomy_Core.php' );
 	    	require_once( $this->directory_path . '/inc/cmb2/bootstrap.php' );
 
-	    } /* includes() */
+			/**
+			 * Include any required files
+			 */
+			add_action( 'init', array( $this, 'includes' ) );
 
-	    /**
-	     * Register CPTs & taxonomies
-	     *
-	     * @since 1.0.0
-	     */
-	    public function do_hooks() {
+			/**
+			 * Load Textdomain
+			 */
+			load_plugin_textdomain( 'art-store', false, dirname( $this->basename ) . '/languages' );
 
-		    if( $this->meets_requirements() ) {
-			    add_action( 'init', array( $this, 'register_post_types' ) );
-			    add_action( 'init', array( $this, 'register_taxonomies' ) );
-		    }
+			/**
+			 * Activation/Deactivation Hooks
+			 */
+			register_activation_hook(   __FILE__, array( $this, 'activate' ) );
+			register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 
-	    } /* do_hooks() */
+			/**
+			 * Make sure we have our requirements, and disable the plugin if we do not have them.
+			 */
+			add_action( 'admin_notices', array( $this, 'maybe_disable_plugin' ) );
 
-	    /**
-	     * Activation hook for the plugin.
-	     *
-	     * @since 1.0.0
-	     */
-	    public function activate() {
+		}
 
-		    // If BadgeOS is available, run our activation functions
-		    if ( $this->meets_requirements() ) {
-		    }
 
-	    } /* activate() */
+		/**
+		 * Include our plugin dependencies
+		 *
+		 * @since 1.0.0
+		 */
+		public function includes() {
 
-	    /**
-	     * Deactivation hook for the plugin.
-	     *
-	     * @since 1.0.0
-	     */
-	    public function deactivate() {
+			if ( $this->meets_requirements() ) {
+				require_once( $this->directory_path . '/inc/template-tags.php' );
+			}
 
-	    } /* deactivate() */
+		} /* includes() */
 
-	    /**
-	     * Check that all plugin requirements are met
-	     *
-	     * @since  1.0.0
-	     *
-	     * @return bool
-	     */
-	    public static function meets_requirements() {
+		/**
+		 * Register CPTs & taxonomies
+		 *
+		 * @since 1.0.0
+		 */
+		public function do_hooks() {
 
-	    	/**
-	    	 * any plugin dependencies go here.
-	    	 * everything we need is bundled in the plugin so we should be good
-	    	 */
+			if( $this->meets_requirements() ) {
+				add_action( 'init', array( $this, 'register_post_types' ), 4 );
+				add_action( 'init', array( $this, 'register_taxonomies' ), 9 );
+			}
 
-		    /**
-		     * We have met all requirements
-		     */
-		    return true;
-	    } /* meets_requirements() */
+		} /* do_hooks() */
 
-	    /**
-	     * Check if the plugin meets requirements and disable it if they are not present.
-	     *
-	     * @since 1.0.0
-	     */
-	    public function maybe_disable_plugin() {
+		/**
+		 * Activation hook for the plugin.
+		 *
+		 * @since 1.0.0
+		 */
+		public function activate() {
 
-		    if ( ! $this->meets_requirements() ) {
-			    // Display our error
-			    echo '<div id="message" class="error">';
-			    echo '<p>' . sprintf( __( 'Sample plugin is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', 'art-store' ), admin_url( 'plugins.php' ) ) . '</p>';
-			    echo '</div>';
+			// If BadgeOS is available, run our activation functions
+			if ( $this->meets_requirements() ) {
+			}
 
-			    // Deactivate our plugin
-			    deactivate_plugins( $this->basename );
-		    }
+		} /* activate() */
 
-	    } /* maybe_disable_plugin() */
+		/**
+		 * Deactivation hook for the plugin.
+		 *
+		 * @since 1.0.0
+		 */
+		public function deactivate() {
 
-	    /**
-	     * Registers our custom post-types
-	     *
-	     * @since 1.0.0
-	     */
-	    public function register_post_types() {
-		    register_via_cpt_core(
-			    array(
-				    __( 'Work', 'art-store' ),  // Single
-				    __( 'Works', 'art-store' ), // Plural
-				    'art-store-work'           // Registered slug
-			    ),
-			    array(
-				    'menu_icon' => 'dashicons-art',
-				    'rewrite'   => array( 'slug' => 'work' )
-			    ) // register_post_type args
-		    );
-	    } /* register_post_types() */
+		} /* deactivate() */
 
-	    /**
-	     * Registers our custom taxonomies
-	     *
-	     * @since 1.0.0
-	     */
-	    public function register_taxonomies() {
+		/**
+		 * Check that all plugin requirements are met
+		 *
+		 * @since  1.0.0
+		 *
+		 * @return bool
+		 */
+		public static function meets_requirements() {
 
-	    	// Register "Type" taxonomy
-		    register_via_taxonomy_core(
-			    array(
-				    __( 'Type', 'art-store' ),  // Single
-				    __( 'Types', 'art-store' ), // Plural
-				    'art-store-type'           // Registered slug
-			    ),
-			    array(
-				    'hierarchical' => true,
-				    'rewrite'      => array( 'slug' => 'type' )
-			    ), // register_taxonomy args
-			    array(
-				    'art-store-work'
-			    ) // post-types
-		    );
+			/**
+			 * any plugin dependencies go here.
+			 * everything we need is bundled in the plugin so we should be good
+			 */
 
-		    // Register "Theme/Subject" taxonomy
-		    register_via_taxonomy_core(
-			    array(
-				    __( 'Theme/Subject', 'art-store' ),  // Single
-				    __( 'Themes/Subjects', 'art-store' ), // Plural
-				    'art-store-subject'           // Registered slug
-			    ),
-			    array(
-				    'hierarchical' => false,
-				    'rewrite'      => array( 'slug' => 'subject' )
-			    ), // register_taxonomy args
-			    array(
-				    'art-store-work'
-			    ) // post-types
-		    );
+			/**
+			 * We have met all requirements
+			 */
+			return true;
+		} /* meets_requirements() */
 
-		    // Register the "Medium" taxonomy
-		    register_via_taxonomy_core(
-		    	array(
-		    		__( 'Medium', 'art-store' ), // Single
-		    		__( 'Media', 'art-store' ), // Plural
-		    		'art-store-medium'
-		    	),
-		    	array(
-		    		'hierarchical' => false,
-		    		'rewrite'      => array( 'slug' => 'medium' )
-		    	),
-		    	array(
-		    		'art-store-work'
-		    	)
-		    );
+		/**
+		 * Check if the plugin meets requirements and disable it if they are not present.
+		 *
+		 * @since 1.0.0
+		 */
+		public function maybe_disable_plugin() {
 
-	    } /* register_taxonomies() */
+			if ( ! $this->meets_requirements() ) {
+				// Display our error
+				echo '<div id="message" class="error">';
+				echo '<p>' . sprintf( __( 'Sample plugin is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', 'art-store' ), admin_url( 'plugins.php' ) ) . '</p>';
+				echo '</div>';
 
-    }
+				// Deactivate our plugin
+				deactivate_plugins( $this->basename );
+			}
 
-    $_GLOBALS['Art_Store'] = new Art_Store;
+		} /* maybe_disable_plugin() */
+
+		/**
+		 * Registers our custom post-types
+		 *
+		 * @since 1.0.0
+		 */
+		public function register_post_types() {
+			// label overrides go here
+			$labels = array(
+				'menu_name' => __( 'Art Store', 'art-store' )
+			);
+
+			register_via_cpt_core(
+				array(
+					__( 'Work', 'art-store' ),  // Single
+					__( 'Works', 'art-store' ), // Plural
+					'art-store-work'           // Registered slug
+				),
+				array(
+					'menu_icon' => 'dashicons-art',
+					'rewrite'   => array( 'slug' => 'work' ),
+					'labels'    => $labels
+				) // register_post_type args
+			);
+		} /* register_post_types() */
+
+		/**
+		 * Registers our custom taxonomies
+		 *
+		 * @since 1.0.0
+		 */
+		public function register_taxonomies() {
+
+			// Register "Type" taxonomy
+			register_via_taxonomy_core(
+				array(
+					__( 'Type', 'art-store' ),  // Single
+					__( 'Types', 'art-store' ), // Plural
+					'art-store-type'           // Registered slug
+				),
+				array(
+					'hierarchical' => true,
+					'rewrite'      => array( 'slug' => 'type' )
+				), // register_taxonomy args
+				array(
+					'art-store-work'
+				) // post-types
+			);
+
+			// Register "Theme/Subject" taxonomy
+			register_via_taxonomy_core(
+				array(
+					__( 'Theme/Subject', 'art-store' ),  // Single
+					__( 'Themes/Subjects', 'art-store' ), // Plural
+					'art-store-subject'           // Registered slug
+				),
+				array(
+					'hierarchical' => false,
+					'rewrite'      => array( 'slug' => 'subject' )
+				), // register_taxonomy args
+				array(
+					'art-store-work'
+				) // post-types
+			);
+
+			// Register the "Medium" taxonomy
+			register_via_taxonomy_core(
+				array(
+					__( 'Medium', 'art-store' ), // Single
+					__( 'Media', 'art-store' ), // Plural
+					'art-store-medium'
+				),
+				array(
+					'hierarchical' => false,
+					'rewrite'      => array( 'slug' => 'medium' )
+				),
+				array(
+					'art-store-work'
+				)
+			);
+
+		} /* register_taxonomies() */
+
+	}
+
+	$_GLOBALS['Art_Store'] = new Art_Store;
 	$_GLOBALS['Art_Store']->do_hooks();
 }
