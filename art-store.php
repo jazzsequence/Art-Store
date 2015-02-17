@@ -351,6 +351,40 @@ if ( ! class_exists( 'Art_Store' ) ) {
 			return true;
 		}
 
+		/**
+		 * Callback function that checks if we're using URLs for product purchases or HTML codes
+		 */
+		public function are_product_urls_active() {
+			//TODO check option setting for html codes. for now, toggle manually to enable/disable metaboxes
+			return true;
+		}
+
+		/**
+		 * Callback function that checks if we're using html codes for buttons
+		 */
+		public function are_html_codes_active() {
+			// return whatever the opposite of are_product_urls_active is
+			if ( $this->are_product_urls_active() ) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		/**
+		 * Callback function that checks members and product urls/html codes settings to determine
+		 * which members button boxes to display
+		 */
+		public function members_and_html() {
+			if ( $this->is_members_enabled() ) {
+				if ( $this->are_html_codes_active() ) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
 	}
 
 	$_GLOBALS['Art_Store'] = new Art_Store;
