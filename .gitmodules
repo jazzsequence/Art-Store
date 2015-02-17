@@ -1,3 +1,9 @@
 [submodule "inc/cmb2"]
 	path = inc/cmb2
 	url = git@github.com:WebDevStudios/CMB2.git
+[submodule "inc/cpt_core"]
+	path = inc/cpt_core
+	url = git@github.com:WebDevStudios/CPT_Core.git
+[submodule "inc/taxonomy_core"]
+	path = inc/taxonomy_core
+	url = git@github.com:WebDevStudios/Taxonomy_Core.git
