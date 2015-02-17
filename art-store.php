@@ -37,13 +37,19 @@ if ( ! class_exists( 'Art_Store' ) ) {
 			$this->basename       = plugin_basename( __FILE__ );
 			$this->directory_path = plugin_dir_path( __FILE__ );
 			$this->directory_url  = plugins_url( dirname( $this->basename ) );
+			$this->prefix         = '_wds_as_';
 
 			/**
 			 * Load external libraries
 			 */
 	    	require_once( $this->directory_path . '/inc/cpt_core/CPT_Core.php' );
 	    	require_once( $this->directory_path . '/inc/taxonomy_core/Taxonomy_Core.php' );
-	    	require_once( $this->directory_path . '/inc/cmb2/bootstrap.php' );
+	    	require_once( $this->directory_path . '/inc/cmb2/init.php' );
+
+	    	/**
+	    	 * Handle the meta boxes
+	    	 */
+			add_filter( 'cmb2_meta_boxes', array( $this, 'do_meta_boxes' ) );
 
 			/**
 			 * Include any required files
@@ -267,6 +273,82 @@ if ( ! class_exists( 'Art_Store' ) ) {
 				wp_enqueue_style( 'art-store', $this->directory_url . '/assets/css/art-store.css' );
 			}
 
+		}
+
+		/**
+		 * Handle the CMB2 meta boxes
+		 */
+		public function do_meta_boxes( array $meta_boxes ) {
+
+			$meta_boxes['art_work_details'] = array(
+				'id'           => 'art-work-details',
+				'title'        => __( 'Product Information', 'art-store' ),
+				'object_types' => array( 'art-store-work' ),
+				'context'      => 'normal',
+				'show_names'   => true,
+				'fields'       => array(
+					'price' => array(
+						'name'       => __( 'Price', 'art-store' ),
+						'id'         => $this->prefix . 'price',
+						'type'       => 'text_money',
+						'desc'       => __( 'Item Price', 'art-store' )
+					),
+					'members_price' => array(
+						'name'       => __( 'Members Price', 'art-store' ),
+						'id'         => $this->prefix . 'members_price',
+						'type'       => 'text_money',
+						'desc'       => __( 'Members price (if different)', 'art-store' ),
+						'show_on_cb' => array( $this, 'is_members_enabled' )
+					),
+					'button_html' => array(
+						'name'       => __( 'PayPal Button HTML', 'art-store' ),
+						'id'         => $this->prefix . 'button_html',
+						'type'       => 'textarea_code',
+						'desc'       => __( 'Enter the PayPal button code for logged-out users and non-members.', 'art-store' ),
+						'attributes' => array( 'rows' => 5 )
+					),
+					'members_button_html' => array(
+						'name'       => __( 'Members PayPal Button HTML', 'art-store' ),
+						'id'         => $this->prefix . 'members_button_html',
+						'type'       => 'textarea_code',
+						'desc'       => __( 'Enter the PayPal button code for <strong>members and logged-in users</strong>. This should be a unique button with a different price than the one for logged-out users.', 'art-store' ),
+						'show_on_cb' => array( $this, 'is_members_enabled' ),
+						'attributes' => array( 'rows' => 5 )
+					),
+					'shipping_info' => array(
+						'name'       => __( 'Shipping Information', 'art-store' ),
+						'id'         => $this->prefix . 'shipping_info',
+						'type'       => 'wysiwyg',
+						'desc'       => __( '(Optional) Special shipping considerations, shipping method, weight, etc.', 'art-store' ),
+						'options'    => array(
+							'media_buttons' => false,
+							'teeny'         => true,
+							'textarea_rows' => 5,
+						)
+					),
+					'other_notes' => array(
+						'name'       => __( 'Other Notes', 'art-store' ),
+						'id'         => $this->prefix . 'other_notes',
+						'type'       => 'wysiwyg',
+						'desc'       => __( '(Optional) Any other information about the item.', 'art-store' ),
+						'options'    => array(
+							'media_buttons' => false,
+							'teeny'         => true,
+							'textarea_rows' => 5,
+						)
+					)
+				)
+			);
+
+			return $meta_boxes;
+		}
+
+		/**
+		 * Callback function that checks if members setting is enabled
+		 */
+		public function is_members_enabled() {
+			// TODO check option setting for members. for now, just return true
+			return true;
 		}
 
 	}
