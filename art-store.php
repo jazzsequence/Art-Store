@@ -158,12 +158,13 @@ if ( ! class_exists( 'Art_Store' ) ) {
 	    public function register_post_types() {
 		    register_via_cpt_core(
 			    array(
-				    __( 'Sample', 'art-store' ),  // Single
-				    __( 'Samples', 'art-store' ), // Plural
-				    'art-store-samples'           // Registered slug
+				    __( 'Work', 'art-store' ),  // Single
+				    __( 'Works', 'art-store' ), // Plural
+				    'art-store-work'           // Registered slug
 			    ),
 			    array(
-				    'menu_icon' => 'dashicons-smiley' // Choose a custom dashicon (http://melchoyce.github.io/dashicons/) or pass an image URI
+				    'menu_icon' => 'dashicons-art',
+				    'rewrite'   => array( 'slug' => 'work' )
 			    ) // register_post_type args
 		    );
 	    } /* register_post_types() */
