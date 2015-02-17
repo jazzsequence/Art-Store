@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'Art_Store' ) ) {
 
     /**
-     * Main Sample Plugin Class
+     * Main Art Store Class
      *
      * @since 1.0.0
      */
