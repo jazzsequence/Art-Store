@@ -246,7 +246,7 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		} /* register_taxonomies() */
 
 		/**
-		 * Enqueue the javascript for the cool slider
+		 * Enqueue the public facing javascript for the cool slider
 		 */
 		public function enqueue_scripts() {
 			// load our js if we aren't in the admin
