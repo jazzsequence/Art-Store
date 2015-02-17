@@ -69,8 +69,9 @@ if ( ! class_exists( 'Art_Store' ) ) {
 	     */
 	    public function includes() {
 
-		    if( $this->meets_requirements() ) {
-		    }
+	    	require_once( $this->directory_path . '/inc/cpt_core/CPT_Core.php' );
+	    	require_once( $this->directory_path . '/inc/taxonomy_core/Taxonomy_Core.php' );
+	    	require_once( $this->directory_path . '/inc/cmb2/bootstrap.php' );
 
 	    } /* includes() */
 
