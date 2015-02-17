@@ -119,19 +119,11 @@ if ( ! class_exists( 'Art_Store' ) ) {
 	     * @return bool
 	     */
 	    public static function meets_requirements() {
-		    /**
-		     * Make sure we have register_via_cpt_core so we can use it
-		     */
-		    if( ! function_exists( 'register_via_cpt_core' ) ) {
-			    return false;
-		    }
 
-		    /**
-		     * Make sure we have register_via_taxonomy_core so we can use it
-		     */
-		    if( ! function_exists( 'register_via_taxonomy_core' ) ) {
-			    return false;
-		    }
+	    	/**
+	    	 * any plugin dependencies go here.
+	    	 * everything we need is bundled in the plugin so we should be good
+	    	 */
 
 		    /**
 		     * We have met all requirements
