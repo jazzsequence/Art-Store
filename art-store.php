@@ -93,6 +93,7 @@ if ( ! class_exists( 'Art_Store' ) ) {
 				add_action( 'init', array( $this, 'register_post_types' ), 9 );
 				add_action( 'init', array( $this, 'register_taxonomies' ), 4 );
 				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+				add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 			}
 
 		} /* do_hooks() */
@@ -255,6 +256,17 @@ if ( ! class_exists( 'Art_Store' ) ) {
 				wp_enqueue_script( 'mousewheel', $this->directory_url . '/assets/js/jquery.mousewheel.min.js', array( 'jquery' ), '3.1.4', true );
 				wp_enqueue_script( 'smoothdivscroll', $this->directory_url . '/assets/js/jquery.smoothdivscroll-1.3-min.js', array( 'jquery', 'kinetic', 'mousewheel' ), '1.3', true );
 			}
+		}
+
+		/**
+		 * Enqueue the public facing css
+		 */
+		public function enqueue_styles() {
+
+			if ( !is_admin() ) {
+				wp_enqueue_style( 'art-store', $this->directory_url . '/assets/css/art-store.css' );
+			}
+
 		}
 
 	}
