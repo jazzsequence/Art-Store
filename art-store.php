@@ -204,8 +204,8 @@ if ( ! class_exists( 'Art_Store' ) ) {
 			// Register "Form" taxonomy
 			register_via_taxonomy_core(
 				array(
-					__( 'Form', 'art-store' ),  // Single
-					__( 'Forms', 'art-store' ), // Plural
+					__( 'Art Form', 'art-store' ),  // Single
+					__( 'Art Forms', 'art-store' ), // Plural
 					'art-store-form'           // Registered slug
 				),
 				array(
