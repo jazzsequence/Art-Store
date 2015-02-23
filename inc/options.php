@@ -120,7 +120,7 @@ if ( ! class_exists( 'Art_Store_Options' ) ) {
 				'desc'    => __( 'The page you are displaying your artwork on.', 'art-store' ),
 				'id'      => 'gallery_page',
 				'type'    => 'select',
-				'options' => array(), // TODO array for pages
+				'options' => $this->get_all_pages(),
 				'default' => 'none'
 			) );
 
@@ -136,7 +136,7 @@ if ( ! class_exists( 'Art_Store_Options' ) ) {
 				'desc'    => __( 'If a price is left blank, a page may be set for a contact form for visitors to enquire for a price of an item.', 'art-store' ),
 				'id'      => 'enquire_for_price',
 				'type'    => 'select',
-				'options' => array(), // TODO array for pages
+				'options' => $this->get_all_pages(),
 				'default' => 'none'
 			) );
 
