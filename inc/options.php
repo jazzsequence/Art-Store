@@ -65,11 +65,9 @@ if ( ! class_exists( 'Art_Store_Options' ) ) {
 		 * Run our hooks
 		 */
 		public function do_hooks() {
-			if ( $this->meets_requirements() ) {
-				add_action( 'admin_init', array( $this, 'init' ) );
-				add_action( 'admin_menu', array( $this, 'add_options_page' ) );
-				add_action( 'cmb2_init', array( $this, 'add_options_page_metabox' ) );
-			}
+			add_action( 'admin_init', array( $this, 'init' ) );
+			add_action( 'admin_menu', array( $this, 'add_options_page' ) );
+			add_action( 'cmb2_init', array( $this, 'add_options_page_metabox' ) );
 		}
 
 		/**
