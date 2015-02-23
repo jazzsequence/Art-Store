@@ -120,7 +120,7 @@ if ( ! class_exists( 'Art_Store_Options' ) ) {
 				'desc'    => __( 'The page you are displaying your artwork on.', 'art-store' ),
 				'id'      => 'gallery_page',
 				'type'    => 'select',
-				'options' => array(), // TODO array for pages
+				'options' => $this->get_all_pages(),
 				'default' => 'none'
 			) );
 
@@ -136,7 +136,7 @@ if ( ! class_exists( 'Art_Store_Options' ) ) {
 				'desc'    => __( 'If a price is left blank, a page may be set for a contact form for visitors to enquire for a price of an item.', 'art-store' ),
 				'id'      => 'enquire_for_price',
 				'type'    => 'select',
-				'options' => array(), // TODO array for pages
+				'options' => $this->get_all_pages(),
 				'default' => 'none'
 			) );
 
@@ -162,20 +162,38 @@ if ( ! class_exists( 'Art_Store_Options' ) ) {
 			return;
 		}
 
-	/**
-	 * Public getter method for retrieving protected/private variables
-	 *
-	 * @param  string  $field Field to retrieve
-	 * @return mixed          Field value or exception is thrown
-	 */
-	public function __get( $field ) {
-		// Allowed fields to retrieve
-		if ( in_array( $field, array( 'key', 'metabox_id', 'fields', 'title', 'options_page' ), true ) ) {
-			return $this->{$field};
+		/**
+		 * Public getter method for retrieving protected/private variables
+		 *
+		 * @param  string  $field Field to retrieve
+		 * @return mixed          Field value or exception is thrown
+		 */
+		public function __get( $field ) {
+			// Allowed fields to retrieve
+			if ( in_array( $field, array( 'key', 'metabox_id', 'fields', 'title', 'options_page' ), true ) ) {
+				return $this->{$field};
+			}
+
+			throw new Exception( 'Invalid property: ' . $field );
 		}
 
-		throw new Exception( 'Invalid property: ' . $field );
-	}
+		/**
+		 * Get a list of pages
+		 *
+		 * @return array 	An array of pages on the site
+		 */
+		public function get_all_pages() {
+			$pages = get_pages();
+			$list = array();
+
+			$list['none'] = __( '- None -', 'art-store' );
+
+			foreach( $pages as $page ) {
+				$list[$page->ID] = $page->post_title;
+			}
+
+			return $list;
+		}
 
 	}
 
@@ -189,7 +207,7 @@ if ( ! class_exists( 'Art_Store_Options' ) ) {
  * @return Art_Store_Options object
  */
 function art_store_options() {
-	$Art_Store_Options = $_GLOBALS['Art_Store_Options'];
+	$Art_Store_Options = new Art_Store_Options;
 	return $Art_Store_Options;
 }
 

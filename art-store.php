@@ -190,7 +190,12 @@ if ( ! class_exists( 'Art_Store' ) ) {
 				array(
 					'menu_icon' => 'dashicons-art',
 					'rewrite'   => array( 'slug' => 'work' ),
-					'labels'    => $labels
+					'labels'    => $labels,
+					'supports'     => array(
+						'title',
+						'editor',
+						'thumbnail'
+					)
 				) // register_post_type args
 			);
 		} /* register_post_types() */
@@ -257,8 +262,10 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		 */
 		public function enqueue_scripts() {
 			// load our js if we aren't in the admin
-			// TODO: also check if an option for page is set for the scroll, https://github.com/jazzsequence/Art-Store/issues/3
-			if ( !is_admin() ) {
+			// also check if an option for page is set for the scroller or if no page was defined
+			$gallery_page = art_store_get_option( 'gallery_home' );
+
+			if ( !is_admin() && ( is_page( $gallery_page ) || 'none' == $gallery_page ) ) {
 				wp_enqueue_script( 'kinetic', $this->directory_url . '/assets/js/jquery.kinetic.js', array( 'jquery' ), '1.8.2', true );
 				wp_enqueue_script( 'mousewheel', $this->directory_url . '/assets/js/jquery.mousewheel.min.js', array( 'jquery' ), '3.1.4', true );
 				wp_enqueue_script( 'smoothdivscroll', $this->directory_url . '/assets/js/jquery.smoothdivscroll-1.3-min.js', array( 'jquery', 'kinetic', 'mousewheel' ), '1.3', true );
@@ -320,6 +327,21 @@ if ( ! class_exists( 'Art_Store' ) ) {
 							'textarea_rows' => 5,
 						)
 					),
+					'width' => array(
+						'name'       => __( 'Width', 'art-store' ),
+						'id'         => $this->prefix . 'width',
+						'type'       => 'text_small',
+					),
+					'height' => array(
+						'name'       => __( 'Height', 'art-store' ),
+						'id'         => $this->prefix . 'height',
+						'type'       => 'text_small'
+					),
+					'depth' => array(
+						'name'       => __( 'Depth', 'art-store' ),
+						'id'         => $this->prefix . 'depth',
+						'type'       => 'text_small'
+					),
 					'other_notes' => array(
 						'name'       => __( 'Other Notes', 'art-store' ),
 						'id'         => $this->prefix . 'other_notes',
@@ -351,8 +373,15 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		 * Callback function that checks if we're using URLs for product purchases or HTML codes
 		 */
 		public function are_product_urls_active() {
-			//TODO check option setting for html codes. for now, toggle manually to enable/disable metaboxes
-			return true;
+			$code_or_url = art_store_get_option( 'code_or_url' );
+
+			if ( 'url' == $code_or_url ) {
+				return true;
+			} else {
+				return false;
+			}
+
+
 		}
 
 		/**
