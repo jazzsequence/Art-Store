@@ -355,7 +355,7 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		public function are_product_urls_active() {
 			$code_or_url = art_store_get_option( 'code_or_url' );
 
-			if ( 'url' = $code_or_url ) {
+			if ( 'url' == $code_or_url ) {
 				return true;
 			} else {
 				return false;
