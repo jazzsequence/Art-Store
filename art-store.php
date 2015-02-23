@@ -190,7 +190,12 @@ if ( ! class_exists( 'Art_Store' ) ) {
 				array(
 					'menu_icon' => 'dashicons-art',
 					'rewrite'   => array( 'slug' => 'work' ),
-					'labels'    => $labels
+					'labels'    => $labels,
+					'supports'     => array(
+						'title',
+						'editor',
+						'thumbnail'
+					)
 				) // register_post_type args
 			);
 		} /* register_post_types() */
