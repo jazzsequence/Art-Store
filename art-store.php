@@ -84,6 +84,7 @@ if ( ! class_exists( 'Art_Store' ) ) {
 
 			if ( $this->meets_requirements() ) {
 				require_once( $this->directory_path . '/inc/template-tags.php' );
+				require_once( $this->directory_path . '/inc/options.php' );
 			}
 
 		} /* includes() */
