@@ -351,8 +351,15 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		 * Callback function that checks if we're using URLs for product purchases or HTML codes
 		 */
 		public function are_product_urls_active() {
-			//TODO check option setting for html codes. for now, toggle manually to enable/disable metaboxes
-			return true;
+			$code_or_url = art_store_get_option( 'code_or_url' );
+
+			if ( 'url' = $code_or_url ) {
+				return true;
+			} else {
+				return false;
+			}
+
+
 		}
 
 		/**
