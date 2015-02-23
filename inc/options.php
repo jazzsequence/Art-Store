@@ -177,6 +177,24 @@ if ( ! class_exists( 'Art_Store_Options' ) ) {
 			throw new Exception( 'Invalid property: ' . $field );
 		}
 
+		/**
+		 * Get a list of pages
+		 *
+		 * @return array 	An array of pages on the site
+		 */
+		public function get_all_pages() {
+			$pages = get_pages();
+			$list = array();
+
+			$list['none'] = __( '- None -', 'art-store' );
+
+			foreach( $pages as $page ) {
+				$list[$page->ID] = $page->post_title;
+			}
+
+			return $list;
+		}
+
 	}
 
 	$_GLOBALS['Art_Store_Options'] = new Art_Store_Options;
