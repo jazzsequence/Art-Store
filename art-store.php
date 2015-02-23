@@ -327,6 +327,21 @@ if ( ! class_exists( 'Art_Store' ) ) {
 							'textarea_rows' => 5,
 						)
 					),
+					'width' => array(
+						'name'       => __( 'Width', 'art-store' ),
+						'id'         => $this->prefix . 'width',
+						'type'       => 'text_small',
+					),
+					'height' => array(
+						'name'       => __( 'Height', 'art-store' ),
+						'id'         => $this->prefix . 'height',
+						'type'       => 'text_small'
+					),
+					'depth' => array(
+						'name'       => __( 'Depth', 'art-store' ),
+						'id'         => $this->prefix . 'depth',
+						'type'       => 'text_small'
+					),
 					'other_notes' => array(
 						'name'       => __( 'Other Notes', 'art-store' ),
 						'id'         => $this->prefix . 'other_notes',
