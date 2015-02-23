@@ -162,20 +162,20 @@ if ( ! class_exists( 'Art_Store_Options' ) ) {
 			return;
 		}
 
-	/**
-	 * Public getter method for retrieving protected/private variables
-	 *
-	 * @param  string  $field Field to retrieve
-	 * @return mixed          Field value or exception is thrown
-	 */
-	public function __get( $field ) {
-		// Allowed fields to retrieve
-		if ( in_array( $field, array( 'key', 'metabox_id', 'fields', 'title', 'options_page' ), true ) ) {
-			return $this->{$field};
-		}
+		/**
+		 * Public getter method for retrieving protected/private variables
+		 *
+		 * @param  string  $field Field to retrieve
+		 * @return mixed          Field value or exception is thrown
+		 */
+		public function __get( $field ) {
+			// Allowed fields to retrieve
+			if ( in_array( $field, array( 'key', 'metabox_id', 'fields', 'title', 'options_page' ), true ) ) {
+				return $this->{$field};
+			}
 
-		throw new Exception( 'Invalid property: ' . $field );
-	}
+			throw new Exception( 'Invalid property: ' . $field );
+		}
 
 	}
 
