@@ -257,8 +257,10 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		 */
 		public function enqueue_scripts() {
 			// load our js if we aren't in the admin
-			// TODO: also check if an option for page is set for the scroll, https://github.com/jazzsequence/Art-Store/issues/3
-			if ( !is_admin() ) {
+			// also check if an option for page is set for the scroller or if no page was defined
+			$gallery_page = art_store_get_option( 'gallery_home' );
+
+			if ( !is_admin() && ( is_page( $gallery_page ) || 'none' == $gallery_page ) ) {
 				wp_enqueue_script( 'kinetic', $this->directory_url . '/assets/js/jquery.kinetic.js', array( 'jquery' ), '1.8.2', true );
 				wp_enqueue_script( 'mousewheel', $this->directory_url . '/assets/js/jquery.mousewheel.min.js', array( 'jquery' ), '3.1.4', true );
 				wp_enqueue_script( 'smoothdivscroll', $this->directory_url . '/assets/js/jquery.smoothdivscroll-1.3-min.js', array( 'jquery', 'kinetic', 'mousewheel' ), '1.3', true );
