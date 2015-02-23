@@ -207,7 +207,7 @@ if ( ! class_exists( 'Art_Store_Options' ) ) {
  * @return Art_Store_Options object
  */
 function art_store_options() {
-	$Art_Store_Options = $_GLOBALS['Art_Store_Options'];
+	$Art_Store_Options = new Art_Store_Options;
 	return $Art_Store_Options;
 }
 
