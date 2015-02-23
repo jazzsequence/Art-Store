@@ -162,8 +162,43 @@ if ( ! class_exists( 'Art_Store_Options' ) ) {
 			return;
 		}
 
+	/**
+	 * Public getter method for retrieving protected/private variables
+	 *
+	 * @param  string  $field Field to retrieve
+	 * @return mixed          Field value or exception is thrown
+	 */
+	public function __get( $field ) {
+		// Allowed fields to retrieve
+		if ( in_array( $field, array( 'key', 'metabox_id', 'fields', 'title', 'options_page' ), true ) ) {
+			return $this->{$field};
+		}
+
+		throw new Exception( 'Invalid property: ' . $field );
+	}
+
 	}
 
 	$_GLOBALS['Art_Store_Options'] = new Art_Store_Options;
 	$_GLOBALS['Art_Store_Options']->do_hooks();
+}
+
+/**
+ * Helper function to get/return the myprefix_Admin object
+ *
+ * @return Art_Store_Options object
+ */
+function art_store_options() {
+	$Art_Store_Options = $_GLOBALS['Art_Store_Options'];
+	return $Art_Store_Options;
+}
+
+/**
+ * Wrapper function around cmb2_get_option
+ *
+ * @param  string  $key Options array key
+ * @return mixed        Option value
+ */
+function art_store_get_option( $key = '' ) {
+	return cmb2_get_option( art_store_options()->key, $key );
 }
