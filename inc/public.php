@@ -29,6 +29,15 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 
 		}
 
+		/**
+		 * Single product content filter
+		 */
+		public function product_single( $content ) {
+			global $post;
+
+			$product_information = get_art_store_info( $post->ID );
+		}
+
 	}
 
 	$_GLOBALS['Art_Store_Public'] = new Art_Store_Public;
