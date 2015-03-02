@@ -301,6 +301,18 @@ if ( ! class_exists( 'Art_Store' ) ) {
 						'type'       => 'text_money',
 						'desc'       => __( 'Item Price', 'art-store' )
 					),
+					'status' => array(
+						'name'       => __( 'Status', 'art-store' ),
+						'id'         => $this->prefix . 'status',
+						'type'       => 'select',
+						'default'    => 'sale',
+						'options'    => array(
+							'sale'    => __( 'For Sale', 'art-store' ),
+							'enquire' => __( 'Enquire for Price', 'art-store' ),
+							'sold'    => __( 'Sold', 'art-store' ),
+							'nfs'     => __( 'Not for Sale', 'art-store' )
+						)
+					),
 					'button_url' => array(
 						'name'       => __( 'Button URL', 'art-store' ),
 						'id'         => $this->prefix . 'button_url',
