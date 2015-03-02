@@ -17,18 +17,16 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 		 */
 		public function __construct() {
 			// Setup some base variables for the plugin
-			// TODO this stuff should probably be pulled from the parent class or just removed
-			// $this->basename       = plugin_basename( __FILE__ );
-			// $this->directory_path = plugin_dir_path( __FILE__ );
-			// $this->directory_url  = plugins_url( dirname( $this->basename ) );
+			$this->basename       = art_store()->basename;
+			$this->directory_path = art_store()->directory_path;
+			$this->directory_url  = art_store()->directory_url;
 		}
 
 		/**
 		 * Run our hooks
 		 */
 		public function do_hooks() {
-			if ( $this->meets_requirements() ) {
-			}
+
 		}
 
 	}
