@@ -22,9 +22,7 @@ if ( ! class_exists( 'Art_Store_Terms' ) ) {
 		 * Register taxonomy terms
 		 */
 		public function do_hooks() {
-			if ( $this->meets_requirements() ) {
-				add_action( 'init', array( $this, 'insert_terms' ) );
-			}
+			add_action( 'init', array( $this, 'insert_terms' ) );
 		}
 
 		/**
