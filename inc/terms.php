@@ -50,6 +50,29 @@ if ( ! class_exists( 'Art_Store_Terms' ) ) {
 			wp_insert_term( 'Art Print', 'art-store-form', array(
 				'slug' => 'print'
 			) );
+
+			// insert terms for medium
+			wp_insert_term( 'Acrylic', 'art-store-medium', array(
+				'slug' => 'acrylic'
+			) );
+			wp_insert_term( 'Oil', 'art-store-medium', array(
+				'slug' => 'oil'
+			) );
+			wp_insert_term( 'Pastel', 'art-store-medium', array(
+				'slug' => 'pastel'
+			) );
+			wp_insert_term( 'Charcoal', 'art-store-medium', array(
+				'slug' => 'charchoal'
+			) );
+			wp_insert_term( 'Watercolor', 'art-store-medium', array(
+				'slug' => 'watercolor'
+			) );
+			wp_insert_term( 'Graphite', 'art-store-medium', array(
+				'slug' => 'graphite'
+			) );
+			wp_insert_term( 'Mixed Media', 'art-store-medium', array(
+				'slug' => 'mixed'
+			) );
 		}
 
 	}
