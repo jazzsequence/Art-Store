@@ -26,7 +26,9 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 		 * Run our hooks
 		 */
 		public function do_hooks() {
-
+			if( !is_admin() && is_singular( 'art-store-work' ) ) {
+				add_filter( 'the_content', array( $this, 'product_single' ), 20 );
+			}
 		}
 
 		/**
