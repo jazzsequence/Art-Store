@@ -1,6 +1,6 @@
 <?php
 /**
- * File that handles generating default taxonomy terms
+ * Class that handles generating default taxonomy terms
  */
 
 // Exit if accessed directly
@@ -16,10 +16,6 @@ if ( ! class_exists( 'Art_Store_Terms' ) ) {
 		 * Construct function to get things started.
 		 */
 		public function __construct() {
-			// Setup some base variables for the plugin
-			$this->basename       = art_store()->basename;
-			$this->directory_path = art_store()->directory_path;
-			$this->directory_url  = art_store()->directory_url;
 		}
 
 		/**
