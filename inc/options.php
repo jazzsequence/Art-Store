@@ -53,10 +53,9 @@ if ( ! class_exists( 'Art_Store_Options' ) ) {
 		 */
 		public function __construct() {
 			// Setup some base variables for the plugin
-			$Art_Store            = new Art_Store;
-			$this->basename       = $Art_Store->basename;
-			$this->directory_path = $Art_Store->directory_path;
-			$this->directory_url  = $Art_Store->directory_url;
+			$this->basename       = art_store()->basename;
+			$this->directory_path = art_store()->directory_path;
+			$this->directory_url  = art_store()->directory_url;
 			$this->title          = __( 'Art Store Options', 'art-store' );
 		}
 
