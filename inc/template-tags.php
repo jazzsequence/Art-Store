@@ -9,6 +9,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Generic art store class wrapper function
+ *
+ * @return object
+ */
+function art_store() {
+	return new Art_Store;
+}
+
+/**
  * Public function for getting the button image
  *
  * @return string 	URL to custom button image
