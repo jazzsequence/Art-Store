@@ -151,6 +151,18 @@ if ( ! class_exists( 'Art_Store_Options' ) ) {
 				'default' => 'code'
 			) );
 
+			$cmb->add_field( array(
+				'name'    => __( 'Single Product Purchase Information', 'art-store' ),
+				'desc'    => __( 'Defines whether to use the Product Information widget to display purchase information (like the Buy Now button) or to display that in the main content area.', 'art-store' ),
+				'id'      => 'product_info',
+				'type'    => 'select',
+				'options' => array(
+					'widget'  => __( 'Widget', 'art-store' ),
+					'content' => __( 'Content Area', 'art-store' )
+				),
+				'default' => 'content'
+			) );
+
 		}
 
 		/**
