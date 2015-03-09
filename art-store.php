@@ -46,6 +46,11 @@ if ( ! class_exists( 'Art_Store' ) ) {
 	    	require_once( $this->directory_path . '/inc/taxonomy_core/Taxonomy_Core.php' );
 	    	require_once( $this->directory_path . '/inc/cmb2/init.php' );
 
+	    	/**
+	    	 * Insert default taxonomy terms
+	    	 */
+			require_once( $this->directory_path . '/inc/terms.php' );
+
 			/**
 			 * Include any required files
 			 */
@@ -81,7 +86,6 @@ if ( ! class_exists( 'Art_Store' ) ) {
 				require_once( $this->directory_path . '/inc/template-tags.php' );
 				require_once( $this->directory_path . '/inc/options.php' );
 				require_once( $this->directory_path . '/inc/cmb.php' );
-				require_once( $this->directory_path . '/inc/terms.php' );
 			}
 
 		} /* includes() */
