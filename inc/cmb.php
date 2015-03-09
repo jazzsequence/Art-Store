@@ -113,6 +113,40 @@ if ( ! class_exists( 'Art_Store_CMB' ) ) {
 				)
 			);
 
+			$meta_boxes['art_forms'] = array(
+				'id'           => 'art-forms',
+				'title'        => __( 'Art Forms', 'art-store' ),
+				'object_types' => array( 'art-store-work' ),
+				'context'      => 'side',
+				'priority'     => 'low',
+				'show_names'   => false,
+				'fields'       => array(
+					array(
+						'id'         => $this->prefix . 'art_forms',
+						'type'              => 'taxonomy_multicheck',
+						'taxonomy'          => 'art-store-form',
+						'select_all_button' => false
+					)
+				)
+			);
+
+			$meta_boxes['medium'] = array(
+				'id'           => 'medium',
+				'title'        => __( 'Medium', 'art-store' ),
+				'object_types' => array( 'art-store-work' ),
+				'context'      => 'side',
+				'priority'     => 'low',
+				'show_names'   => false,
+				'fields'       => array(
+					array(
+						'id'         => $this->prefix . 'medium',
+						'type'              => 'taxonomy_multicheck',
+						'taxonomy'          => 'art-store-medium',
+						'select_all_button' => false
+					)
+				)
+			);
+
 			return $meta_boxes;
 		}
 
