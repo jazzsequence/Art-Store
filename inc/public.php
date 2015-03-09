@@ -35,7 +35,8 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 		 * Single product content filter
 		 */
 		public function product_single( $content ) {
-			global $post;
+			if ( is_singular( array( 'art-store-work' ) ) ) :
+				global $post;
 
 			$product_information = get_art_store_info( $post->ID );
 
@@ -108,14 +109,13 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 							}
 
 						}
+				return ob_get_clean();
 
-					} ?>
-				</dl>
-			</div>
+			else :
 
-			<?php
+				return $content;
 
-			return ob_get_clean();
+			endif;
 		}
 
 	}
