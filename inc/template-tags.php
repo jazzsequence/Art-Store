@@ -104,3 +104,114 @@ function get_art_store_product_terms( $taxonomy = '', $post_id = 0 ) {
 	return wp_get_post_terms( $post_id, $taxonomy );
 
 }
+
+/**
+ * Public function for displaying a list of Subjects/Themes
+ * Must be used inside the Loop
+ *
+ * @param string $before 	Text to display before the actual tags are displayed. Defaults to Subjects/Themes:
+ * @param string $sep 		Text or character to display between each tag link. The default is a comma (,) between each tag.
+ * @param string $after 	Text to display after the last tag. The default is to display nothing.
+ */
+function the_art_store_themes( $before = '', $sep = ', ', $after = '' ) {
+	// if nothing is passed for the $before argument, add a localized string
+	if ( '' == $before ) {
+		$before = __( 'Subjects/Themes:', 'art-store' ) . ' ';
+	}
+
+	$terms = get_art_store_product_terms( 'art-store-subject' );
+
+	if ( $terms ) :
+
+		echo $before;
+
+		$count = 1;
+		foreach( $terms as $term ) {
+			echo '<a href="' . get_term_link( $term, 'art-store-subject' ) . '" title="' . sprintf( __( 'Permanent link to %s', 'art-store' ), $term->name ) . '">' . $term->name . '</a>';
+			if ( count( $terms ) > $count ) {
+				echo $sep;
+				$count++;
+			}
+		}
+
+		echo $after;
+
+	else :
+		return;
+
+	endif;
+}
+
+/**
+ * Public function for displaying a list of Art Forms
+ * Must be used inside the Loop
+ *
+ * @param string $before 	Text to display before the actual tags are displayed. Defaults to Art Form(s):
+ * @param string $sep 		Text or character to display between each tag link. The default is a comma (,) between each tag.
+ * @param string $after 	Text to display after the last tag. The default is to display nothing.
+ */
+function the_art_store_forms( $before = '', $sep = ', ', $after = '' ) {
+	// if nothing is passed for the $before argument, add a localized string
+	if ( '' == $before ) {
+		$before = __( 'Art Form(s):', 'art-store' ) . ' ';
+	}
+
+	$terms = get_art_store_product_terms( 'art-store-form' );
+
+	if ( $terms ) :
+
+		echo $before;
+
+		$count = 1;
+		foreach( $terms as $term ) {
+			echo '<a href="' . get_term_link( $term, 'art-store-form' ) . '" title="' . sprintf( __( 'Permanent link to %s', 'art-store' ), $term->name ) . '">' . $term->name . '</a>';
+			if ( count( $terms ) > $count ) {
+				echo $sep;
+				$count++;
+			}
+		}
+
+		echo $after;
+
+	else :
+		return;
+
+	endif;
+}
+
+/**
+ * Public function for displaying a list of artistic media
+ * Must be used inside the Loop
+ *
+ * @param string $before 	Text to display before the actual tags are displayed. Defaults to Medium:
+ * @param string $sep 		Text or character to display between each tag link. The default is a comma (,) between each tag.
+ * @param string $after 	Text to display after the last tag. The default is to display nothing.
+ */
+function the_art_store_media( $before = '', $sep = ', ', $after = '' ) {
+	// if nothing is passed for the $before argument, add a localized string
+	if ( '' == $before ) {
+		$before = __( 'Medium:', 'art-store' ) . ' ';
+	}
+
+	$terms = get_art_store_product_terms( 'art-store-medium' );
+
+	if ( $terms ) :
+
+		echo $before;
+
+		$count = 1;
+		foreach( $terms as $term ) {
+			echo '<a href="' . get_term_link( $term, 'art-store-medium' ) . '" title="' . sprintf( __( 'Permanent link to %s', 'art-store' ), $term->name ) . '">' . $term->name . '</a>';
+			if ( count( $terms ) > $count ) {
+				echo $sep;
+				$count++;
+			}
+		}
+
+		echo $after;
+
+	else :
+		return;
+
+	endif;
+}
