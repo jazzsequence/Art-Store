@@ -113,6 +113,19 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 						} ?>
 					</dl>
 				</div>
+				<div class="art-store-meta  product-metainfo">
+					<ul>
+						<?php if ( get_art_store_product_terms( 'art-store-subject', $post->ID ) ) { ?>
+							<li><?php the_art_store_themes(); ?></li>
+						<?php } ?>
+						<?php if ( get_art_store_product_terms( 'art-store-form', $post->ID ) ) { ?>
+							<li><?php the_art_store_forms(); ?></li>
+						<?php } ?>
+						<?php if ( get_art_store_product_terms( 'art-store-medium', $post->ID ) ) { ?>
+							<li><?php the_art_store_media(); ?></li>
+						<?php } ?>
+					</ul>
+				</div>
 
 				<?php
 
