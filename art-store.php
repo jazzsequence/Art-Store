@@ -233,7 +233,11 @@ if ( ! class_exists( 'Art_Store' ) ) {
 				),
 				array(
 					'hierarchical' => false,
-					'rewrite'      => array( 'slug' => 'subject' )
+					'rewrite'      => array( 'slug' => 'subject' ),
+					'labels'       => array(
+						'separate_items_with_commas' => __( 'Separate subjects or themes with commas', 'art-store' ),
+						'choose_from_most_used'      => __( 'Choose from most used themes and subjects', 'art-store' )
+					)
 				), // register_taxonomy args
 				array(
 					'art-store-work'
