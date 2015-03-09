@@ -163,6 +163,18 @@ if ( ! class_exists( 'Art_Store_Options' ) ) {
 				'default' => 'content'
 			) );
 
+			$cmb->add_field( array(
+				'name'    => __( 'Show Featured Image', 'art-store' ),
+				'desc'    => __( 'If enabled, automatically displays the featured image in the single product page. Some themes might already do this for you, which would result in the image displaying twice. The default is not to show the image.', 'art-store' ),
+				'id'      => 'show_featured_image',
+				'type'    => 'select',
+				'options' => array(
+					false => __( 'Disabled (do not show the featured image)', 'art-store' ),
+					true  => __( 'Enabled (automatically embed the featured image)', 'art-store' )
+				),
+				'default' => false
+			) );
+
 		}
 
 		/**
