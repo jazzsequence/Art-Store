@@ -16,12 +16,6 @@ if ( ! class_exists( 'Art_Store_Terms' ) ) {
 		 * Construct function to get things started.
 		 */
 		public function __construct() {
-		}
-
-		/**
-		 * Register taxonomy terms
-		 */
-		public function do_hooks() {
 			add_action( 'init', array( $this, 'insert_terms' ) );
 		}
 
@@ -76,5 +70,4 @@ if ( ! class_exists( 'Art_Store_Terms' ) ) {
 	}
 
 	$_GLOBALS['Art_Store_Terms'] = new Art_Store_Terms;
-	$_GLOBALS['Art_Store_Terms']->do_hooks();
 }
