@@ -40,14 +40,6 @@ if ( ! class_exists( 'Art_Store' ) ) {
 			$this->prefix         = '_wds_as_';
 
 			/**
-			 * Sub classes
-			 */
-			$this->cmb           = new Art_Store_CMB;
-			$this->options       = new Art_Store_Options;
-			$this->terms         = new Art_Store_Terms;
-			$this->public        = new Art_Store_Public;
-
-			/**
 			 * Load external libraries
 			 */
 	    	require_once( $this->directory_path . '/inc/cpt_core/CPT_Core.php' );
