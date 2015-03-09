@@ -17,6 +17,7 @@ if ( ! class_exists( 'Art_Store_Terms' ) ) {
 		 */
 		public function __construct() {
 			add_action( 'init', array( $this, 'insert_terms' ) );
+			add_action( 'add_meta_boxes', array( $this, 'remove_meta_boxes' ) );
 		}
 
 		/**
@@ -65,6 +66,11 @@ if ( ! class_exists( 'Art_Store_Terms' ) ) {
 			wp_insert_term( 'Mixed Media', 'art-store-medium', array(
 				'slug' => 'mixed'
 			) );
+		}
+
+		public function remove_meta_boxes() {
+			remove_meta_box( 'tagsdiv-art-store-form', 'art-store-work', 'side' );
+			remove_meta_box( 'tagsdiv-art-store-medium', 'art-store-work', 'side' );
 		}
 
 	}
