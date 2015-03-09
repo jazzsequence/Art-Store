@@ -78,3 +78,29 @@ function get_art_store_info( $post_id = 0 ) {
 
 	return $info;
 }
+
+/**
+ * Public function for getting a product's taxonomy terms
+ *
+ * @param string $tax 		The taxonomy to get terms for
+ * @param int    $post_id 	The id of the post to pull terms for
+ */
+function get_art_store_product_terms( $taxonomy = '', $post_id = 0 ) {
+	// die if no tax was passed
+	if ( '' == $taxonomy ) {
+		wp_die( __( 'No taxonomy was passed to <code>get_art_store_product_terms</code>.', 'art-store' ) );
+	}
+
+	// if no post_id was passed, see if we can get it from the global and die if we can't
+	if ( !$post_id ) {
+		global $post;
+		if ( $post->ID ) {
+			$post_id = $post->ID;
+		} else {
+			wp_die( 'No post ID was passed to <code>get_art_store_product_terms</code> and could not identify post ID automagically.', 'art-store' );
+		}
+	}
+
+	return wp_get_post_terms( $post_id, $taxonomy );
+
+}
