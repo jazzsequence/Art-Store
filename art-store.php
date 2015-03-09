@@ -216,7 +216,7 @@ if ( ! class_exists( 'Art_Store' ) ) {
 					'art-store-form'           // Registered slug
 				),
 				array(
-					'hierarchical' => true,
+					'hierarchical' => false,
 					'rewrite'      => array( 'slug' => 'form' )
 				), // register_taxonomy args
 				array(
