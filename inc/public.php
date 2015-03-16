@@ -71,47 +71,16 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 							<?php }
 							// status, check if it's set to "enquire for price" and if a URL has been set for the enquire for price link
 							if ( 'enquire' == $product_information['status'] && 'none' !== art_store_get_option( 'enquire_for_price' ) ) { ?>
+
 								<dt></dt>
 								<dd><a href="<?php echo get_permalink( absint( art_store_get_option( 'enquire_for_price' ) ) ); ?>"><?php _e( 'Enquire for Price', 'art-store' ); ?></a></dd>
-							<?php } else {
 
-								switch ( $product_information['status'] ) {
+							<?php } else { ?>
 
-									// plain "enquire for price" text
-									case 'enquire': ?>
-										<dt><?php _e( 'Enquire for Price', 'art-store' ); ?></dt>
-										<dd></dd>
-										<?php break;
+								<dt><?php echo $this->display_status( $product_information['status'] ); ?></dt>
+								<dd><?php echo $this->display_button( $post->ID ); ?></dd>
 
-									case 'sold' : ?>
-										<dt><?php _e( 'Sold', 'art-store' ); ?></dt>
-										<dd></dd>
-										<?php break;
-
-									case 'nfs' : ?>
-										<dt><?php _e( 'Not for Sale', 'art-store' ); ?></dt>
-										<dd></dd>
-										<?php break;
-
-									case 'sale' : ?>
-										<dt><?php _e( 'For Sale', 'art-store' ); ?></dt>
-										<dd>
-											<?php
-											// are we using urls or code for the buy button?
-											if ( 'url' == art_store_get_option( 'code_or_url' ) ) { ?>
-												<a href="<?php echo esc_url( $product_information['btn_url'] ); ?>"><?php echo get_art_store_button_url(); ?></a>
-											<?php } else {
-												// if stuff is getting stripped out, it could be right here
-												echo wp_kses_post( $product_information['btn_code'] );
-											}?>
-										</dd>
-										<?php break;
-
-									default:
-										break;
-								}
-
-							}
+							<?php }
 
 						} ?>
 					</dl>
