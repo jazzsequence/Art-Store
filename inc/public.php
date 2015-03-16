@@ -53,7 +53,7 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 				}
 
 				// display the post content
-				echo wp_kses_post( $content );
+				echo $content;
 
 				echo $this->product_information( $post->ID );
 
