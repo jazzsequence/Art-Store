@@ -28,6 +28,7 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 		public function do_hooks() {
 			if( !is_admin() ) {
 				add_filter( 'the_content', array( $this, 'product_single' ), 20 );
+				add_filter( 'the_excerpt', array( $this, 'product_excerpt' ), 20 );
 			}
 		}
 
@@ -55,6 +56,31 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 				// display the post content
 				echo $content;
 
+				echo $this->product_information( $post->ID );
+
+				return ob_get_clean();
+
+			else :
+
+				return $content;
+
+			endif;
+		}
+
+		/**
+		 * Excerpt filter for products
+		 */
+		public function product_excerpt( $content ) {
+			if ( is_post_type_archive( array( 'art-store-work' ) ) || 'art-store-work' == get_post_type( get_the_ID() ) ) :
+
+				global $post;
+
+				ob_start();
+
+				// display post content
+				echo $content;
+
+				// then display the product information
 				echo $this->product_information( $post->ID );
 
 				return ob_get_clean();
