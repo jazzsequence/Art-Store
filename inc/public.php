@@ -43,11 +43,13 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 				ob_start();
 
 				// display the featured image first
-				if ( has_post_thumbnail( $post->ID ) && art_store_get_option( 'show_featured_image' ) ) {
-					echo get_the_post_thumbnail( $post->ID, 'large' );
-				} else {
-					// if there's no featured image, tell someone about it
-					_e( 'No image set for this product.', 'art-store' );
+				if ( art_store_get_option( 'show_featured_image' ) ) {
+					if ( has_post_thumbnail( $post->ID ) ) {
+						echo get_the_post_thumbnail( $post->ID, 'large' );
+					} else {
+						// if there's no featured image, tell someone about it
+						_e( 'No image set for this product.', 'art-store' );
+					}
 				}
 
 				// display the post content
