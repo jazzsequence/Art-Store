@@ -164,6 +164,14 @@ if ( ! class_exists( 'Art_Store_Options' ) ) {
 			) );
 
 			$cmb->add_field( array(
+				'name'    => __( 'Currency Symbol', 'art-store' ),
+				'desc'    => __( 'Please enter the  symbol for the currency you will be selling items in.', 'art-store' ),
+				'id'      => 'currency_symbol',
+				'type'    => 'text_small',
+				'default' => '$'
+			) );
+
+			$cmb->add_field( array(
 				'name'    => __( 'Show Featured Image', 'art-store' ),
 				'desc'    => __( 'If enabled, automatically displays the featured image in the single product page. Some themes might already do this for you, which would result in the image displaying twice. The default is not to show the image.', 'art-store' ),
 				'id'      => 'show_featured_image',
