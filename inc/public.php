@@ -32,10 +32,10 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 		}
 
 		/**
-		 * Single product content filter
+		 * Product content filter
 		 */
 		public function product_single( $content ) {
-			if ( is_singular( array( 'art-store-work' ) ) ) :
+			if ( is_singular( array( 'art-store-work' ) ) || is_post_type_archive( array( 'art-store-work' ) ) || 'art-store-work' == get_post_type( get_the_ID() ) ) :
 				global $post;
 
 				$product_information = get_art_store_info( $post->ID );
