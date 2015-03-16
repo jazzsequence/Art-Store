@@ -54,52 +54,8 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 
 				// display the post content
 				echo wp_kses_post( $content );
-				?>
 
-				<div class="art-store-information product-information" id="art-work-<?php echo $post->ID; ?>">
-
-					<dl>
-						<?php
-						// are we displaying the price and purchase info in the content?
-						if ( 'content' == art_store_get_option( 'product_info' ) ) {
-
-							// price
-							if ( '' !== $product_information['price'] ) {
-								$currency_symbol = ( art_store_get_option( 'currency_symbol' ) ) ? art_store_get_option( 'currency_symbol' ) : '$'; ?>
-								<dt><?php _e( 'Price', 'art-store' ); ?></dt>
-								<dd><?php echo $currency_symbol . esc_attr( $product_information['price'] );?></dd>
-							<?php }
-							// status, check if it's set to "enquire for price" and if a URL has been set for the enquire for price link
-							if ( 'enquire' == $product_information['status'] && 'none' !== art_store_get_option( 'enquire_for_price' ) ) { ?>
-
-								<dt></dt>
-								<dd><a href="<?php echo get_permalink( absint( art_store_get_option( 'enquire_for_price' ) ) ); ?>"><?php _e( 'Enquire for Price', 'art-store' ); ?></a></dd>
-
-							<?php } else { ?>
-
-								<dt><?php echo $this->display_status( $product_information['status'] ); ?></dt>
-								<dd><?php echo $this->display_button( $post->ID ); ?></dd>
-
-							<?php }
-
-						} ?>
-					</dl>
-				</div>
-				<div class="art-store-meta  product-metainfo">
-					<ul>
-						<?php if ( get_art_store_product_terms( 'art-store-subject', $post->ID ) ) { ?>
-							<li><?php the_art_store_themes(); ?></li>
-						<?php } ?>
-						<?php if ( get_art_store_product_terms( 'art-store-form', $post->ID ) ) { ?>
-							<li><?php the_art_store_forms(); ?></li>
-						<?php } ?>
-						<?php if ( get_art_store_product_terms( 'art-store-medium', $post->ID ) ) { ?>
-							<li><?php the_art_store_media(); ?></li>
-						<?php } ?>
-					</ul>
-				</div>
-
-				<?php
+				echo $this->product_information( $post->ID );
 
 				return ob_get_clean();
 
@@ -184,6 +140,73 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 
 			return $output;
 
+		}
+
+		/**
+		 * Output the product information.
+		 *
+		 * @param int     $post_id 	The id of the post to display information about
+		 * @return string $output 	The html-formatted product information
+		 */
+		public function product_information( $post_id ) {
+			// bail if no post ID was passed
+			if ( 0 == $post_id ) {
+				return;
+			}
+
+			$product_information = get_art_store_info( $post_id );
+
+			$output = '';
+			ob_start(); ?>
+
+			<div class="art-store-information product-information" id="art-work-<?php echo $post_id; ?>">
+
+				<dl>
+					<?php
+					// are we displaying the price and purchase info in the content?
+					if ( 'content' == art_store_get_option( 'product_info' ) ) {
+
+						// price
+						if ( '' !== $product_information['price'] ) {
+							$currency_symbol = ( art_store_get_option( 'currency_symbol' ) ) ? art_store_get_option( 'currency_symbol' ) : '$'; ?>
+							<dt><?php _e( 'Price', 'art-store' ); ?></dt>
+							<dd><?php echo $currency_symbol . esc_attr( $product_information['price'] );?></dd>
+						<?php }
+						// status, check if it's set to "enquire for price" and if a URL has been set for the enquire for price link
+						if ( 'enquire' == $product_information['status'] && 'none' !== art_store_get_option( 'enquire_for_price' ) ) { ?>
+
+							<dt></dt>
+							<dd><a href="<?php echo get_permalink( absint( art_store_get_option( 'enquire_for_price' ) ) ); ?>"><?php _e( 'Enquire for Price', 'art-store' ); ?></a></dd>
+
+						<?php } else { ?>
+
+							<dt><?php echo $this->display_status( $product_information['status'] ); ?></dt>
+							<dd><?php echo $this->display_button( $post_id ); ?></dd>
+
+						<?php }
+
+					} ?>
+				</dl>
+			</div>
+			<div class="art-store-meta  product-metainfo">
+				<ul>
+					<?php if ( get_art_store_product_terms( 'art-store-subject', $post_id ) ) { ?>
+						<li><?php the_art_store_themes(); ?></li>
+					<?php } ?>
+					<?php if ( get_art_store_product_terms( 'art-store-form', $post_id ) ) { ?>
+						<li><?php the_art_store_forms(); ?></li>
+					<?php } ?>
+					<?php if ( get_art_store_product_terms( 'art-store-medium', $post_id ) ) { ?>
+						<li><?php the_art_store_media(); ?></li>
+					<?php } ?>
+				</ul>
+			</div>
+
+			<?php
+
+			$output = ob_get_clean();
+
+			return $output;
 		}
 
 	}
