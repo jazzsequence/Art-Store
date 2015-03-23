@@ -240,11 +240,81 @@ function the_art_store_media( $before = '', $sep = ', ', $after = '' ) {
  * @param bool 	  $echo 	True to echo, false to return
  */
 function the_art_store_product_information( $post_id = 0, $echo = true ) {
-	$art_store_public = new Art_Store_Public;
 
+	// bail if no post id was passed
+	if ( !$post_id )
+		return;
+
+	$product_information = get_art_store_info( $post_id );
+
+	ob_start();
+
+	// price
+	if ( '' !== $product_information['price'] ) {
+		$currency_symbol = ( art_store_get_option( 'currency_symbol' ) ) ? art_store_get_option( 'currency_symbol' ) : '$'; ?>
+		<dt itemprop="price"><?php _e( 'Price', 'art-store' ); ?></dt>
+		<dd><?php echo $currency_symbol . esc_attr( $product_information['price'] );?></dd>
+	<?php }
+	// status, check if it's set to "enquire for price" and if a URL has been set for the enquire for price link
+	if ( 'enquire' == $product_information['status'] && 'none' !== art_store_get_option( 'enquire_for_price' ) ) { ?>
+
+		<dt></dt>
+		<dd class="enquire-for-price"><a href="<?php echo get_permalink( absint( art_store_get_option( 'enquire_for_price' ) ) ); ?>"><?php _e( 'Enquire for Price', 'art-store' ); ?></a></dd>
+
+	<?php } else { ?>
+
+		<dt><?php echo $this->display_status( $product_information['status'] ); ?></dt>
+		<dd class="product-button"><?php echo $this->display_button( $post_id ); ?></dd>
+
+	<?php }
+
+	// shipping info
+	if ( isset( $product_information['shipping'] ) ) { ?>
+
+		<dt><?php _e( 'Shipping Information', 'art-store' ); ?></dt>
+		<dd class="shipping-info"><?php echo esc_html( $product_information['shipping'] ); ?></dd>
+	<?php }
+
+	// dimensions
+	if ( isset( $product_information['height'] ) ) { ?>
+
+		<dt><?php _e( 'Height', 'art-store' ); ?></dt>
+		<dd class="height"><?php echo esc_html( $product_information['height'] ); ?></dd>
+
+	<?php }
+
+	if ( isset( $product_information['width'] ) ) { ?>
+
+		<dt><?php _e( 'Width', 'art-store' ); ?></dt>
+		<dd class="width"><?php echo esc_html( $product_information['width'] ); ?>
+
+	<?php }
+
+	if ( isset( $product_information['depth'] ) ) { ?>
+
+		<dt><?php _e( 'Depth', 'art-store' ); ?></dt>
+		<dd class="depth"><?php echo esc_html( $product_information['depth'] ); ?></dd>
+	<?php }
+
+	// other information
+	if ( isset( $product_information['notes'] ) ) { ?>
+
+		<dt><?php _e( 'Other information', 'art-store' ); ?></dt>
+		<dd class="other-info"><?php echo wp_kses_post( $product_information['notes'] ); ?></dd>
+	<?php }
+
+	$output = ob_get_clean();
+
+	// echo if echo is true
 	if ( $echo ) :
-		echo $art_store_public->product_information( $post_id );
+
+		echo $output;
+
+	// otherwise return
 	else :
-		return $art_store_public->product_information( $post_id );
+
+		return $output;
+
 	endif;
 }
+
