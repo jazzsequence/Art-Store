@@ -117,8 +117,6 @@ class Art_Store_Product_Widget extends WP_Widget {
 	public static function get_widget( $atts ) {
 		global $wp_query;
 		$post         = $wp_query->post;
-		$button_url   = get_art_store_button_url();
-		$product_info = get_art_store_info( $post->ID );
 
 		$widget = '';
 
