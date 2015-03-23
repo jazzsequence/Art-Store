@@ -94,44 +94,6 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 
 
 		/**
-		 * Function to either return a linked button, the button code or nothing for a product
-		 *
-		 * @param  int    $post_id 	The id of the post
-		 * @return string $output 	A hyperlinked image, html button code, or nothing if not for sale
-		 */
-		public function display_button( $post_id = 0 ) {
-			// bail if no id was passed
-			if ( 0 == $post_id ) {
-				return;
-			}
-
-			// get the product information
-			$product_information = get_art_store_info( $post_id );
-
-			// bail if the product isn't foir sale
-			if ( in_array( $product_information['status'], array( 'enquire', 'sold', 'nfs' ) ) ) {
-				return;
-			}
-
-			$output = '';
-
-			// are we using urls or code for the buy button?
-			if ( 'url' == art_store_get_option( 'code_or_url' ) ) {
-
-				$output = '<a href="' . esc_url( $product_information['btn_url'] ) . '">' . get_art_store_button_url() . '</a>';
-
-			} else {
-
-				// if stuff is getting stripped out, it could be right here
-				$output = wp_kses_post( $product_information['btn_code'] );
-
-			}
-
-			return $output;
-
-		}
-
-		/**
 		 * Output the product information.
 		 *
 		 * @param int     $post_id 	The id of the post to display information about
