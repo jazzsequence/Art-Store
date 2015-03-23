@@ -153,7 +153,7 @@ class Art_Store_Product_Widget extends WP_Widget {
 		$widget .= $atts['after_widget'];
 
 		// bail if we're using this as a shortcode or if we've decided to display product info in the main content
-		if ( is_main_query() || 'content' == art_store_get_option( 'product_info' ) ) {
+		if ( is_main_query() || 'content' == art_store_get_option( 'product_info' ) || 'art-store-work' !== $post->post_type ) {
 
 			return;
 
