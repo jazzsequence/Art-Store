@@ -252,7 +252,7 @@ function the_art_store_product_information( $post_id = 0, $echo = true ) {
 	// price
 	if ( '' !== $product_information['price'] ) {
 		$currency_symbol = ( art_store_get_option( 'currency_symbol' ) ) ? art_store_get_option( 'currency_symbol' ) : '$'; ?>
-		<dt itemprop="price"><?php _e( 'Price', 'art-store' ); ?></dt>
+		<dt itemprop="price" class="price-label"><?php _e( 'Price', 'art-store' ); ?></dt>
 		<dd><?php echo $currency_symbol . esc_attr( $product_information['price'] );?></dd>
 	<?php }
 	// status, check if it's set to "enquire for price" and if a URL has been set for the enquire for price link
@@ -263,7 +263,7 @@ function the_art_store_product_information( $post_id = 0, $echo = true ) {
 
 	<?php } else { ?>
 
-		<dt><?php echo $this->display_status( $product_information['status'] ); ?></dt>
+		<dt class="status-label <?php echo $product_information['status']; ?>"><?php echo $this->display_status( $product_information['status'] ); ?></dt>
 		<dd class="product-button"><?php echo $this->display_button( $post_id ); ?></dd>
 
 	<?php }
@@ -271,35 +271,36 @@ function the_art_store_product_information( $post_id = 0, $echo = true ) {
 	// shipping info
 	if ( isset( $product_information['shipping'] ) ) { ?>
 
-		<dt><?php _e( 'Shipping Information', 'art-store' ); ?></dt>
+		<dt class="shipping-label"><?php _e( 'Shipping Information', 'art-store' ); ?></dt>
 		<dd class="shipping-info"><?php echo esc_html( $product_information['shipping'] ); ?></dd>
 	<?php }
 
 	// dimensions
-	if ( isset( $product_information['height'] ) ) { ?>
-
-		<dt><?php _e( 'Height', 'art-store' ); ?></dt>
-		<dd class="height"><?php echo esc_html( $product_information['height'] ); ?></dd>
-
-	<?php }
 
 	if ( isset( $product_information['width'] ) ) { ?>
 
-		<dt><?php _e( 'Width', 'art-store' ); ?></dt>
+		<dt class="width-label"><?php _e( 'Width', 'art-store' ); ?></dt>
 		<dd class="width"><?php echo esc_html( $product_information['width'] ); ?>
+
+	<?php }
+
+	if ( isset( $product_information['height'] ) ) { ?>
+
+		<dt class="height-label"><?php _e( 'Height', 'art-store' ); ?></dt>
+		<dd class="height"><?php echo esc_html( $product_information['height'] ); ?></dd>
 
 	<?php }
 
 	if ( isset( $product_information['depth'] ) ) { ?>
 
-		<dt><?php _e( 'Depth', 'art-store' ); ?></dt>
+		<dt class="depth-label"><?php _e( 'Depth', 'art-store' ); ?></dt>
 		<dd class="depth"><?php echo esc_html( $product_information['depth'] ); ?></dd>
 	<?php }
 
 	// other information
 	if ( isset( $product_information['notes'] ) ) { ?>
 
-		<dt><?php _e( 'Other information', 'art-store' ); ?></dt>
+		<dt class="notes-label"><?php _e( 'Other information', 'art-store' ); ?></dt>
 		<dd class="other-info"><?php echo wp_kses_post( $product_information['notes'] ); ?></dd>
 	<?php }
 
