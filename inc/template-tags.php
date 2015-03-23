@@ -59,7 +59,7 @@ function get_art_store_enquire_url() {
  *
  * @return array 	An array of post meta for the current post
  */
-function get_art_store_info( $post_id = 0 ) {
+function get_art_store_info( $post_id = 0, $field = '' ) {
 	// return false if no post id was passed
 	if ( !$post_id )
 		return false;
@@ -76,7 +76,24 @@ function get_art_store_info( $post_id = 0 ) {
 	$info['depth'] = ( get_post_meta( $post_id, $prefix . 'depth', true ) ) ? get_post_meta( $post_id, $prefix . 'depth', true ) : '';
 	$info['notes'] = ( get_post_meta( $post_id, $prefix . 'other_notes', true ) ) ? get_post_meta( $post_id, $prefix . 'other_notes', true ) : '';
 
-	return $info;
+	// if no field was passed, return the full array
+	if ( '' == $field ) :
+		return $info;
+
+	// otherwise, return the single field requested
+	else :
+		// check that the field exists
+		if ( isset( $info[$field] ) ) {
+
+			return $info[$field];
+
+		} else {
+
+			return wp_die( sprintf( __( 'Incorrect parameter passed to %1$sget_art_store_info%2$s. Could not find a value for %3$s.', 'art-store' ), '<code>', '</code>', $field ), __( 'Art Store Error', 'art-store' ) );
+
+		}
+
+	endif;
 }
 
 /**
