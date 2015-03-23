@@ -237,9 +237,14 @@ function the_art_store_media( $before = '', $sep = ', ', $after = '' ) {
  * Echoes the product information. Wrapper for product_information function in the Public class
  *
  * @param int     $post_id 	The id of the post to display information about
+ * @param bool 	  $echo 	True to echo, false to return
  */
-function the_art_store_product_information( $post_id = 0 ) {
+function the_art_store_product_information( $post_id = 0, $echo = true ) {
 	$art_store_public = new Art_Store_Public;
 
-	echo $art_store_public->product_information( $post_id );
+	if ( $echo ) :
+		echo $art_store_public->product_information( $post_id );
+	else :
+		return $art_store_public->product_information( $post_id );
+	endif;
 }
