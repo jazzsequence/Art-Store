@@ -98,11 +98,11 @@ class Art_Store_Product_Widget extends WP_Widget {
 			'title'          => $instance['title'],
 			// these aren't used but maybe will in a future revision
 			'price_label'    => $instance['price_label'],
-			'shipping_label' => $instance['shipping_label']
-			'width_label'    => $instance['width_label']
-			'height_label'   => $instance['height_label']
-			'depth_label'    => $instance['depth_label']
-			'notes_label'    => $instance['notes_label']
+			'shipping_label' => $instance['shipping_label'],
+			'width_label'    => $instance['width_label'],
+			'height_label'   => $instance['height_label'],
+			'depth_label'    => $instance['depth_label'],
+			'notes_label'    => $instance['notes_label'],
 		) );
 
 	}
