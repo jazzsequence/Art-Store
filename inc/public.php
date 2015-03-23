@@ -92,43 +92,6 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 			endif;
 		}
 
-		/**
-		 * Function to display the item status
-		 *
-		 * @param  string $status 	Status passed from the product meta
-		 * @return string $output 	A string describing the status of the item
-		 */
-		public function display_status( $status = '' ) {
-			if ( '' == $status ) {
-				$output = __( 'No status found', 'art-store' );
-			}
-
-			switch( $status ) {
-
-				// plain "enquire for price" text
-				case 'enquire':
-					$output = __( 'Enquire for Price', 'art-store' );
-					break;
-
-				case 'sold' :
-					$output = __( 'Sold', 'art-store' );
-					break;
-
-				case 'nfs' :
-					$output = __( 'Not for Sale', 'art-store' );
-					break;
-
-				case 'sale' :
-					$output = __( 'For Sale', 'art-store' );
-					break;
-
-				default :
-					break;
-			}
-
-			return $output;
-
-		}
 
 		/**
 		 * Function to either return a linked button, the button code or nothing for a product

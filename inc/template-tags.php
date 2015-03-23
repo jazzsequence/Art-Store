@@ -263,8 +263,8 @@ function the_art_store_product_information( $post_id = 0, $echo = true ) {
 
 	<?php } else { ?>
 
-		<dt class="status-label <?php echo $product_information['status']; ?>"><?php echo $this->display_status( $product_information['status'] ); ?></dt>
-		<dd class="product-button"><?php echo $this->display_button( $post_id ); ?></dd>
+		<dt class="status-label <?php echo $product_information['status']; ?>"><?php echo art_store_display_status( $product_information['status'] ); ?></dt>
+		<dd class="product-button"><?php echo art_store_display_button( $post_id ); ?></dd>
 
 	<?php }
 
@@ -319,3 +319,40 @@ function the_art_store_product_information( $post_id = 0, $echo = true ) {
 	endif;
 }
 
+/**
+ * Function to display the item status
+ *
+ * @param  string $status 	Status passed from the product meta
+ * @return string $output 	A string describing the status of the item
+ */
+function art_store_display_status( $status = '' ) {
+	if ( '' == $status ) {
+		$output = __( 'No status found', 'art-store' );
+	}
+
+	switch( $status ) {
+
+		// plain "enquire for price" text
+		case 'enquire':
+			$output = __( 'Enquire for Price', 'art-store' );
+			break;
+
+		case 'sold' :
+			$output = __( 'Sold', 'art-store' );
+			break;
+
+		case 'nfs' :
+			$output = __( 'Not for Sale', 'art-store' );
+			break;
+
+		case 'sale' :
+			$output = __( 'For Sale', 'art-store' );
+			break;
+
+		default :
+			break;
+	}
+
+	return $output;
+
+}
