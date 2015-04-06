@@ -52,6 +52,11 @@ if ( ! class_exists( 'Art_Store' ) ) {
 			require_once( $this->directory_path . '/inc/terms.php' );
 
 			/**
+			 * Register widgets
+			 */
+			require_once( $this->directory_path . '/inc/widgets.php' );
+
+			/**
 			 * Include any required files
 			 */
 			add_action( 'init', array( $this, 'includes' ) );

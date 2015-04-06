@@ -92,81 +92,6 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 			endif;
 		}
 
-		/**
-		 * Function to display the item status
-		 *
-		 * @param  string $status 	Status passed from the product meta
-		 * @return string $output 	A string describing the status of the item
-		 */
-		public function display_status( $status = '' ) {
-			if ( '' == $status ) {
-				$output = __( 'No status found', 'art-store' );
-			}
-
-			switch( $status ) {
-
-				// plain "enquire for price" text
-				case 'enquire':
-					$output = __( 'Enquire for Price', 'art-store' );
-					break;
-
-				case 'sold' :
-					$output = __( 'Sold', 'art-store' );
-					break;
-
-				case 'nfs' :
-					$output = __( 'Not for Sale', 'art-store' );
-					break;
-
-				case 'sale' :
-					$output = __( 'For Sale', 'art-store' );
-					break;
-
-				default :
-					break;
-			}
-
-			return $output;
-
-		}
-
-		/**
-		 * Function to either return a linked button, the button code or nothing for a product
-		 *
-		 * @param  int    $post_id 	The id of the post
-		 * @return string $output 	A hyperlinked image, html button code, or nothing if not for sale
-		 */
-		public function display_button( $post_id = 0 ) {
-			// bail if no id was passed
-			if ( 0 == $post_id ) {
-				return;
-			}
-
-			// get the product information
-			$product_information = get_art_store_info( $post_id );
-
-			// bail if the product isn't foir sale
-			if ( in_array( $product_information['status'], array( 'enquire', 'sold', 'nfs' ) ) ) {
-				return;
-			}
-
-			$output = '';
-
-			// are we using urls or code for the buy button?
-			if ( 'url' == art_store_get_option( 'code_or_url' ) ) {
-
-				$output = '<a href="' . esc_url( $product_information['btn_url'] ) . '">' . get_art_store_button_url() . '</a>';
-
-			} else {
-
-				// if stuff is getting stripped out, it could be right here
-				$output = wp_kses_post( $product_information['btn_code'] );
-
-			}
-
-			return $output;
-
-		}
 
 		/**
 		 * Output the product information.
@@ -180,8 +105,6 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 				return;
 			}
 
-			$product_information = get_art_store_info( $post_id );
-
 			$output = '';
 			ob_start(); ?>
 
@@ -192,24 +115,7 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 					// are we displaying the price and purchase info in the content?
 					if ( 'content' == art_store_get_option( 'product_info' ) ) {
 
-						// price
-						if ( '' !== $product_information['price'] ) {
-							$currency_symbol = ( art_store_get_option( 'currency_symbol' ) ) ? art_store_get_option( 'currency_symbol' ) : '$'; ?>
-							<dt><?php _e( 'Price', 'art-store' ); ?></dt>
-							<dd><?php echo $currency_symbol . esc_attr( $product_information['price'] );?></dd>
-						<?php }
-						// status, check if it's set to "enquire for price" and if a URL has been set for the enquire for price link
-						if ( 'enquire' == $product_information['status'] && 'none' !== art_store_get_option( 'enquire_for_price' ) ) { ?>
-
-							<dt></dt>
-							<dd><a href="<?php echo get_permalink( absint( art_store_get_option( 'enquire_for_price' ) ) ); ?>"><?php _e( 'Enquire for Price', 'art-store' ); ?></a></dd>
-
-						<?php } else { ?>
-
-							<dt><?php echo $this->display_status( $product_information['status'] ); ?></dt>
-							<dd><?php echo $this->display_button( $post_id ); ?></dd>
-
-						<?php }
+						the_art_store_product_information( $post_id );
 
 					} ?>
 				</dl>
