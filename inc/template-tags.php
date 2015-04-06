@@ -394,3 +394,65 @@ function art_store_display_button( $post_id = 0 ) {
 	return $output;
 
 }
+
+/**
+ * Returns a get_posts array for related products
+ *
+ * @param  int   $post_id The post id of the seed post. Excludes this post ID from the returned list
+ * @param  array $terms   get_terms arrays for each of the art-store taxonomies
+ * @return array          An array of related posts. Returns an empty array if there are no related posts.
+ * @todo   Add parameter for post count
+ */
+function art_store_get_related_product_list( $post_id = 0, $terms = array() ) {
+
+	// if there's not a post id or terms passed, bail, we're done
+	if ( ! $post_id || empty( $terms ) ) {
+		return;
+	}
+
+	$forms    = $terms[0];
+	$subjects = $terms[1];
+	$media    = $terms[2];
+
+	foreach ( $forms as $form ) {
+		$form_slugs[] = $form->slug;
+	}
+
+	foreach ( $subjects as $subject ) {
+		$subject_slugs[] = $subject->slug;
+	}
+
+	foreach( $media as $medium ) {
+		$medium_slugs[] = $medium->slug;
+	}
+
+	$related_posts = get_posts( array(
+		'post_type'      => 'art-store-work',
+		'post__not_in'   => array( $post_id ),
+		'post_status'    => 'publish',
+		'orderby'        => 'date',
+		'order'          => 'DESC',
+		'posts_per_page' => 5,
+		'tax_query'      => array(
+			'relation'   => 'OR',
+			array(
+				'taxonomy' => 'art-store-form',
+				'field'    => 'slug',
+				'terms'    => $form_slugs
+			),
+			array(
+				'taxonomy' => 'art-store-subject',
+				'field'    => 'slug',
+				'terms'    => $subject_slugs
+			),
+			array(
+				'taxonomy' => 'art-store-medium',
+				'field'    => 'slug',
+				'terms'    => $medium_slugs
+			)
+		)
+	) );
+
+	return $related_posts;
+
+}
