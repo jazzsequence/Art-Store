@@ -8,6 +8,10 @@ if ( ! defined ( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Product Information Widget
+ */
+
 class Art_Store_Product_Widget extends WP_Widget {
 
 
