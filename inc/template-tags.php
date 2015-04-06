@@ -396,6 +396,60 @@ function art_store_display_button( $post_id = 0 ) {
 }
 
 /**
+ * Get a list of related product post IDs
+ *
+ * @param  object|string|int $post (Optional) The post ID or object to get related posts/products for
+ * @uses   art_store_get_related_product_list()
+ * @todo   Add parameter for post count
+ * @return array|false             Returns an array of post IDs or false if no related posts are found
+ */
+function art_store_get_related_product_ids( $post = 0 ) {
+
+	// if no post was passed, try to get it from the post global
+	if ( ! $post ) {
+		global $post;
+	}
+
+	// if it's still empty, try to get it in the loop from the post id
+	if ( empty( $post ) ) {
+		$post = get_post( get_the_ID() );
+	}
+
+	// get the type of the $post variable. if it's a string or an int, we'll assume it's a post id
+	$type = gettype( $post );
+
+	if ( in_array( $type, array( 'integer', 'string' ) ) ) {
+
+		$post_id = absint( $post );
+
+	} else {
+		// the only other option here is the var should be an object. if it isn't, bail
+		if ( 'object' !== $type ) {
+			return;
+		}
+
+		$post_id = $post->ID;
+
+	}
+
+	$forms    = get_terms( 'art-store-form' );
+	$subjects = get_terms( 'art-store-subject' );
+	$medium   = get_terms( 'art-store-medium' );
+
+	$posts = art_store_get_related_product_list( $post_id, array( $forms, $subjects, $medium ) );
+
+	if ( empty( $posts ) ) {
+		return false;
+	}
+
+	foreach( $posts as $post ) {
+		$post_ids[] = $post->ID;
+	}
+
+	return $post_ids;
+}
+
+/**
  * Returns a get_posts array for related products
  *
  * @param  int   $post_id The post id of the seed post. Excludes this post ID from the returned list
