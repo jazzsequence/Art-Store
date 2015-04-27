@@ -510,3 +510,21 @@ function art_store_get_related_product_list( $post_id = 0, $terms = array() ) {
 	return $related_posts;
 
 }
+
+/**
+ * Public function to get the gallery post object
+ *
+ * @param  array  $atts 	Additional attributes to pass into the WP_Query
+ * @return object 			The WP_Query object
+ */
+function art_store_works( $atts = array() ) {
+	// if no posts_per_page was defined, set the posts_per_page to display all works
+	if ( ! empty( $atts ) && ! isset( $atts['posts_per_page'] ) ) {
+		$atts['posts_per_page'] = -1;
+	}
+
+	$atts['post_type']   = 'art-store-work';
+	$atts['post_status'] = 'publish';
+
+	return new WP_Query( $atts );
+}
