@@ -3,8 +3,8 @@
  * Plugin Name: Art Store
  * Plugin URI: http://wpartstore.com
  * Description: Art Store allows artists to sell their work on their own WordPress website using PayPal. It creates a gallery with all of the meta information for each artwork and displays them in a nice horizontal slider, as a thumbnail page, or in a widget.
- * Author: WebDevStudios, jazzsequence, suzettefranck
- * Author URI: http://webdevstudios.com
+ * Author: jazzsequence, suzettefranck
+ * Author URI: http://wpartstore.com
  * Version: 1.0.0
  * License: GPLv2
  */
