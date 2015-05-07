@@ -385,7 +385,7 @@ class Art_Store_Related_Products extends WP_Widget {
 		// Title
 		$widget .= ( $atts['title'] ) ? $atts['before_title'] . esc_html( $atts['title'] ) . $atts['after_title'] : '';
 
-		$widget .= '<ul class="' . $this->widget_slug . '">';
+		$widget .= '<ul class="art-store-related-products">';
 
 		foreach( $posts as $post_id ) {
 			$widget .= sprintf( '<li><a href="%1$s" title="%2$s">%2$s</a></li>', get_permalink( $post_id ), get_the_title( $post_id ) );
