@@ -160,26 +160,6 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 				$height = $width;
 			if ( $height && ! $width )
 				$width = $height;
-		}
-
-		/**
-		 * Add the side-scrolling gallery shortcode
-		 */
-		public function shortcode( $atts ) {
-			extract( shortcode_atts( array(
-				'width'  => null,
-				'height' => null
-				), $atts ) );
-
-			$width = ( isset( $atts['width'] ) ) ? $atts['width'] : false;
-
-			$height = ( isset( $atts['height'] ) ) ? $atts['height'] : false;
-
-			// if either height OR width is set but not the other, set both to the same value
-			if ( $width && ! $height )
-				$height = $width;
-			if ( $height && ! $width )
-				$width = $height;
 
 			$art_store = art_store_works(); ?>
 
