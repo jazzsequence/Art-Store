@@ -356,6 +356,7 @@ class Art_Store_Related_Products extends WP_Widget {
 	 * @return string       Widget output
 	 */
 	public static function get_widget( $atts ) {
+		global $wp_query;
 		$widget = '';
 
 		// Set up default values for attributes
@@ -396,7 +397,11 @@ class Art_Store_Related_Products extends WP_Widget {
 		// After widget hook
 		$widget .= $atts['after_widget'];
 
-		return $widget;
+		if ( 'art-store-work' == $wp_query->post->post_type ) {
+
+			return $widget;
+
+		}
 	}
 
 
