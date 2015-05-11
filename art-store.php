@@ -277,7 +277,9 @@ if ( ! class_exists( 'Art_Store' ) ) {
 			$gallery_page = art_store_get_option( 'gallery_home' );
 
 			if ( !is_admin() && ( is_page( $gallery_page ) || 'none' == $gallery_page ) ) {
-				wp_enqueue_script( 'kinetic', $this->directory_url . '/assets/js/jquery.kinetic.js', array( 'jquery' ), '1.8.2', true );
+				wp_enqueue_script( 'jquery-ui' );
+				wp_enqueue_script( 'jquery-ui-widget' );
+				wp_enqueue_script( 'kinetic', $this->directory_url . '/assets/js/jquery.kinetic.min.js', array( 'jquery' ), '1.8.2', true );
 				wp_enqueue_script( 'mousewheel', $this->directory_url . '/assets/js/jquery.mousewheel.min.js', array( 'jquery' ), '3.1.4', true );
 				wp_enqueue_script( 'smoothdivscroll', $this->directory_url . '/assets/js/jquery.smoothdivscroll-1.3-min.js', array( 'jquery', 'kinetic', 'mousewheel' ), '1.3', true );
 			}
