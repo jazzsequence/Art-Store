@@ -260,6 +260,7 @@ function the_art_store_product_information( $post_id = 0, $echo = true ) {
 
 		<dt></dt>
 		<dd class="enquire-for-price"><a href="<?php echo get_permalink( absint( art_store_get_option( 'enquire_for_price' ) ) ); ?>"><?php _e( 'Enquire for Price', 'art-store' ); ?></a></dd>
+
 	<?php } else { ?>
 
 		<dt class="status-label <?php echo $product_information['status']; ?>"><?php echo art_store_display_status( $product_information['status'] ); ?></dt>
@@ -520,7 +521,6 @@ function art_store_works( $atts = array() ) {
 	// if no posts_per_page was defined, set the posts_per_page to display all works
 	if ( ! empty( $atts ) && ! isset( $atts['posts_per_page'] ) ) {
 		$atts['posts_per_page'] = -1;
-		$atts['nopaging']       = true;
 	}
 
 	$atts['post_type']   = 'art-store-work';
