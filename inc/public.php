@@ -187,8 +187,10 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 
 				</div> <!-- scrollableArea -->
 			</div> <!-- makeMeScrollable -->
-		<?php }
 
+			<?php wp_reset_query();
+
+		}
 
 	}
 
