@@ -250,7 +250,7 @@ function the_art_store_product_information( $post_id = 0, $echo = true ) {
 	ob_start();
 
 	// price
-	if ( '' !== $product_information['price'] ) {
+	if ( '' !== $product_information['price'] && '0.00' !== $product_information['price'] ) {
 		$currency_symbol = ( art_store_get_option( 'currency_symbol' ) ) ? art_store_get_option( 'currency_symbol' ) : '$'; ?>
 		<dt itemprop="price" class="price-label"><?php _e( 'Price', 'art-store' ); ?></dt>
 		<dd><?php echo $currency_symbol . esc_attr( $product_information['price'] );?></dd>
