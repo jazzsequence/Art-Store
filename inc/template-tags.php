@@ -376,21 +376,21 @@ function art_store_display_button( $post_id = 0 ) {
 		return;
 	}
 
-	$output = '';
 
-	// are we using urls or code for the buy button?
-	if ( 'url' == art_store_get_option( 'code_or_url' ) ) {
+	if ( 'code' == art_store_get_option( 'code_or_url' ) && $product_information['btn_code'] ) {
+		return wp_kses_post( $product_information['btn_code'] );
+	}
 
-		$output = '<a href="' . esc_url( $product_information['btn_url'] ) . '">' . get_art_store_button_url() . '</a>';
-
-	} else {
-
-		// if stuff is getting stripped out, it could be right here
-		$output = wp_kses_post( $product_information['btn_code'] );
+	if ( 'url' == art_store_get_option( 'code_or_url' ) && $product_information['btn_url'] ) {
+		if ( get_art_store_button_url() ) {
+			return sprintf( '<a href="%1$s"><img src="%2$s" title="%3$s" /></a>', $product_information['btn_url'], get_art_store_button_url(), get_the_title() );
+		} else {
+			return sprintf( '<a href="%s">%2$s</a>', $product_information['btn_url'], __( 'Buy Now', 'art-store' ) );
+		}
 
 	}
 
-	return $output;
+	return;
 
 }
 
