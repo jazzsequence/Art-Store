@@ -20,8 +20,6 @@
 	user-select: none;
 }
 #makeMeScrollable {
-	width: 930px;
-	height: 255px;
 	position: relative;
 }
 .scrollWrapper {
