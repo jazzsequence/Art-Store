@@ -8,7 +8,7 @@ Stable tag: 4.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Art Store allows artists to sell their work on their own WordPress website using PayPal (or any other third-party payment processor). It creates a gallery with all of the meta information for each artwork and can display them in a nice horizontal slider.
+Art Store allows artists to sell their work on their own WordPress website using PayPal (or any other third-party payment processor). A horizontal-scrolling gallery with each artwork can be used via a shortcode.
 
 == Description ==
 
