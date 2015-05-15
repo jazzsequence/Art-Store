@@ -5,7 +5,7 @@
  * Description: Art Store allows artists to sell their work on their own WordPress website using PayPal. It creates a gallery with all of the meta information for each artwork and displays them in a nice horizontal slider, as a thumbnail page, or in a widget.
  * Author: jazzsequence, suzettefranck
  * Author URI: http://wpartstore.com
- * Version: 1.0.0
+ * Version: 0.5.0
  * License: GPLv2
  */
 
@@ -20,14 +20,14 @@ if ( ! class_exists( 'Art_Store' ) ) {
 	/**
 	 * Main Art Store Class
 	 *
-	 * @since 1.0.0
+	 * @since 0.5.0
 	 */
 	class Art_Store {
 
 		/**
 		 * Construct function to get things started
 		 *
-		 * @since 1.0.0
+		 * @since 0.5.0
 		 */
 		public function __construct() {
 
@@ -83,7 +83,7 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		/**
 		 * Include our plugin dependencies
 		 *
-		 * @since 1.0.0
+		 * @since 0.5.0
 		 */
 		public function includes() {
 
@@ -99,7 +99,7 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		/**
 		 * Register CPTs & taxonomies
 		 *
-		 * @since 1.0.0
+		 * @since 0.5.0
 		 */
 		public function do_hooks() {
 
@@ -115,7 +115,7 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		/**
 		 * Activation hook for the plugin.
 		 *
-		 * @since 1.0.0
+		 * @since 0.5.0
 		 */
 		public function activate() {
 
@@ -129,7 +129,7 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		/**
 		 * Deactivation hook for the plugin.
 		 *
-		 * @since 1.0.0
+		 * @since 0.5.0
 		 */
 		public function deactivate() {
 
@@ -141,7 +141,7 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		/**
 		 * Check that all plugin requirements are met
 		 *
-		 * @since  1.0.0
+		 * @since  0.5.0
 		 *
 		 * @return bool
 		 */
@@ -161,7 +161,7 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		/**
 		 * Check if the plugin meets requirements and disable it if they are not present.
 		 *
-		 * @since 1.0.0
+		 * @since 0.5.0
 		 */
 		public function maybe_disable_plugin() {
 
@@ -180,7 +180,7 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		/**
 		 * Registers our custom post-types
 		 *
-		 * @since 1.0.0
+		 * @since 0.5.0
 		 */
 		public function register_post_types() {
 			// label overrides go here
@@ -210,7 +210,7 @@ if ( ! class_exists( 'Art_Store' ) ) {
 		/**
 		 * Registers our custom taxonomies
 		 *
-		 * @since 1.0.0
+		 * @since 0.5.0
 		 */
 		public function register_taxonomies() {
 
