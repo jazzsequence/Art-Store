@@ -4,7 +4,7 @@ Donate link: http://wpartstore.com/donate
 Tags: store, paypal, art store, art, work, wpartstore, artstore
 Requires at least: 3.4
 Tested up to: 4.2.2
-Stable tag: 4.2.2
+Stable tag: 0.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,26 +30,22 @@ This section describes how to install the plugin and get it working.
 
 = Do I need a PayPal account to use this plugin? =
 
-Yes, you will need a PayPal account.
+Not necessarily. But you will need some kind of third party payment processor that either gives you a link to your purchase page or an embeddable HTML code.
 
 = Where can I submit features requests, bug enhancements, and issues?
 
-Github
+[Github](https://github.com/jazzsequence/Art-Store/issues/)
 
 == Screenshots ==
 
-1. (screenshot-1.png) Description of the screenshot. 
-
+ None yet
 
 == Changelog ==
 
-= 1.0 =
-* WP Art Store plugin was born on May 15, 2015, by Chris Reynolds and Suzette Franck as an entry into 2015 WordCamp Orange County's Plugin-a-palooza.
+= 0.5.0 =
+* Initial release
 
 
 == Upgrade Notice ==
-
-= 1.0 =
-* No upgrades available at this time.
 
 
