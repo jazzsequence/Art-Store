@@ -1,5 +1,5 @@
 === WP Art Store ===
-Contributors: jazzsequence, WebDevStudios, suzettefranck
+Contributors: jazzsequence, suzettefranck
 Donate link: http://wpartstore.com/donate
 Tags: store, paypal, art store, art, work, wpartstore, artstore
 Requires at least: 3.4
