@@ -172,7 +172,7 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 					<?php if ( $art_store->have_posts() ) : while ( $art_store->have_posts() ) : $art_store->the_post(); ?>
 
 						<section class="art-store-work product" id="art-store-work-<?php the_ID(); ?>">
-							<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_post_thumbnail( array( $width, $height, true ) ); ?></a>
+							<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_post_thumbnail( array( $width, $height ) ); ?></a>
 						</section>
 
 					<?php endwhile; endif; ?>
