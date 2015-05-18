@@ -406,7 +406,8 @@ function art_store_get_related_product_ids( $post = 0 ) {
 
 	// if no post was passed, try to get it from the post global
 	if ( ! $post ) {
-		global $post;
+		global $wp_query;
+		$post = $wp_query->post;
 	}
 
 	// if it's still empty, try to get it in the loop from the post id
