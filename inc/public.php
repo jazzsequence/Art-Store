@@ -158,12 +158,6 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 
 			$posts = ( isset( $atts['posts'] ) ) ? $atts['posts'] : -1;
 
-			// if either height OR width is set but not the other, set both to the same value
-			if ( $width && ! $height )
-				$height = $width;
-			if ( $height && ! $width )
-				$width = $height;
-
 			$art_store = art_store_works( array( 'posts_per_page' => $posts ) ); ?>
 
 			<script type="text/javascript">
