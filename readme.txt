@@ -60,8 +60,12 @@ Not necessarily. But you will need some kind of third party payment processor th
 
 == Changelog ==
 
+= 0.9.0 =
+* fixed a bug that displayed the current product in the related products widget
+
 = 0.5.0 =
 * Initial release
+* For full changelog/revision history, [see commits on Github](https://github.com/jazzsequence/Art-Store/commits/master)
 
 
 == Upgrade Notice ==
