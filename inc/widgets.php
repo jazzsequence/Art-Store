@@ -120,7 +120,7 @@ class Art_Store_Product_Widget extends WP_Widget {
 	 */
 	public static function get_widget( $atts ) {
 		global $wp_query;
-		$post         = $wp_query->post;
+		$post = $wp_query->post;
 
 		$widget = '';
 
@@ -137,7 +137,7 @@ class Art_Store_Product_Widget extends WP_Widget {
 				'price_label'    => __( 'Price', 'art-store' ),
 				'shipping_label' => __( 'Shipping Information', 'art-store' ),
 				'width_label'    => __( 'Width', 'art-store' ),
-				'height_label'    => __( 'Height', 'art-store' ),
+				'height_label'   => __( 'Height', 'art-store' ),
 				'depth_label'    => __( 'Depth', 'art-store' ),
 				'notes_label'    => __( 'Notes', 'art-store' ),
 			),
@@ -182,14 +182,14 @@ class Art_Store_Product_Widget extends WP_Widget {
 		$instance = $old_instance;
 
 		// Sanitize title before saving to database
-		$instance['title'] = sanitize_text_field( $new_instance['title'] );
+		$instance['title']          = sanitize_text_field( $new_instance['title'] );
 		// these aren't used but maybe will in a future revision
-		$instance['price_label'] = sanitize_text_field( $new_instance['price_label'] );
+		$instance['price_label']    = sanitize_text_field( $new_instance['price_label'] );
 		$instance['shipping_label'] = sanitize_text_field( $new_instance['shipping_label'] );
-		$instance['width_label'] = sanitize_text_field( $new_instance['width_label'] );
-		$instance['height_label'] = sanitize_text_field( $new_instance['height_label'] );
-		$instance['depth_label'] = sanitize_text_field( $new_instance['depth_label'] );
-		$instance['notes_label'] = sanitize_text_field( $new_instance['notes_label'] );
+		$instance['width_label']    = sanitize_text_field( $new_instance['width_label'] );
+		$instance['height_label']   = sanitize_text_field( $new_instance['height_label'] );
+		$instance['depth_label']    = sanitize_text_field( $new_instance['depth_label'] );
+		$instance['notes_label']    = sanitize_text_field( $new_instance['notes_label'] );
 
 
 
