@@ -4,7 +4,7 @@ Donate link: http://wpartstore.com/donate
 Tags: store, paypal, art store, art, work, wpartstore, artstore
 Requires at least: 3.4
 Tested up to: 4.2.2
-Stable tag: 0.9.0
+Stable tag: 0.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -59,6 +59,11 @@ Not necessarily. But you will need some kind of third party payment processor th
  None yet
 
 == Changelog ==
+
+= 0.9.1 =
+* added an meta value empty field check if product information is set but no value is saved
+* set mousewheelScrolling to false to disable. can still scroll by click/touch and by hovering over the edges
+
 
 = 0.9.0 =
 * fixed a bug that displayed the current product in the related products widget
