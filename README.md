@@ -19,8 +19,8 @@ You can limit the number of items that appear by adding a `posts` parameter to t
 
 You can specify a height or width to attempt to make all your images uniform. You can specify a height, a width, or both, and the gallery will attempt to use your values whilst not altering the aspect ratio of the thumbnail image.
 
-`[art-store-gallery height=500]` - gallery with height/width set to 500
-`[art-store-gallery width=500]` - gallery with height/width set to 500
+`[art-store-gallery height=500]` - gallery with height/width set to 500  
+`[art-store-gallery width=500]` - gallery with height/width set to 500  
 `[art-store-gallery height=250 width=300]` - gallery with height set to 250 and width set to 300
 
 (Note: The gallery will use whatever crop settings you have specified on the thumbnail in the media library -- you can change the crop settings by editing the image in the media library.)
