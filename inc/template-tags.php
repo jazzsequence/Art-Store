@@ -268,7 +268,7 @@ function the_art_store_product_information( $post_id = 0, $echo = true ) {
 	<?php }
 
 	// shipping info
-	if ( isset( $product_information['shipping'] ) ) { ?>
+	if ( isset( $product_information['shipping'] ) && '' !== $product_information['shipping'] ) { ?>
 
 		<dt class="shipping-label"><?php _e( 'Shipping Information', 'art-store' ); ?></dt>
 		<dd class="shipping-info"><?php echo esc_html( $product_information['shipping'] ); ?></dd>
@@ -276,28 +276,28 @@ function the_art_store_product_information( $post_id = 0, $echo = true ) {
 
 	// dimensions
 
-	if ( isset( $product_information['width'] ) ) { ?>
+	if ( isset( $product_information['width'] ) && '' !== $product_information['width'] ) { ?>
 
 		<dt class="width-label"><?php _e( 'Width', 'art-store' ); ?></dt>
 		<dd class="width"><?php echo esc_html( $product_information['width'] ); ?>
 
 	<?php }
 
-	if ( isset( $product_information['height'] ) ) { ?>
+	if ( isset( $product_information['height'] ) && '' !== $product_information['height'] ) { ?>
 
 		<dt class="height-label"><?php _e( 'Height', 'art-store' ); ?></dt>
 		<dd class="height"><?php echo esc_html( $product_information['height'] ); ?></dd>
 
 	<?php }
 
-	if ( isset( $product_information['depth'] ) ) { ?>
+	if ( isset( $product_information['depth'] ) && '' !== $product_information['depth'] ) { ?>
 
 		<dt class="depth-label"><?php _e( 'Depth', 'art-store' ); ?></dt>
 		<dd class="depth"><?php echo esc_html( $product_information['depth'] ); ?></dd>
 	<?php }
 
 	// other information
-	if ( isset( $product_information['notes'] ) ) { ?>
+	if ( isset( $product_information['notes'] ) && '' !== $product_information['notes'] ) { ?>
 
 		<dt class="notes-label"><?php _e( 'Other information', 'art-store' ); ?></dt>
 		<dd class="other-info"><?php echo wp_kses_post( $product_information['notes'] ); ?></dd>

@@ -161,7 +161,7 @@ if ( ! class_exists( 'Art_Store_Public' ) ) {
 			<script type="text/javascript">
 				jQuery(document).ready(function ($) {
 					$("#makeMeScrollable").smoothDivScroll({
-						mousewheelScrolling: "allDirections",
+						mousewheelScrolling: false,
 						manualContinuousScrolling: true
 					});
 				});
